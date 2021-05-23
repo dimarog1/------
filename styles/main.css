@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+header .container {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .container .logo {
+    width: 15%;
+}
+
+header .logo a {
+    color: wheat;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'KoHo';
+}
+
+header .part1 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+header .container nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
+}
+
+header nav .block {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header nav .block a {
+    color: burlywood;
+    margin-bottom: 5px;
+}
+
+header nav .delimiter {
+    display: block;
+    width: 1px;
+    height: 30px;
+    margin: auto 0;
+    background-color: black;
+    transition: 1s;
+}
+
+header:hover nav .delimiter {
+    background-color: wheat;
+}
+
+header nav .block .line {
+    background-color: black;
+    width: 0%;
+    height: 1px;
+    transition: 0.7s;
+}
+
+header nav .block {
+    cursor: pointer;
+}
+
+header nav .block:hover .line {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+
+header .part2 {
+    width: 35%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+}
+
+header form {
+    background-color: rgb(190, 190, 190);
+    opacity: .8;
+    border-radius: 15px;
+    padding: 1px 10px;
+    transition: 0.7s;
+}
+
+header form input {
+    height: 30px;
+    padding: 10px;
+    border: none;
+    background-color: rgb(190, 190, 190);
+    font-size: 20px;
+    font-weight: 600px;
+}
+
+header form:hover {
+    box-shadow: 0 0 10px 3px burlywood;
+}
+
+header form input:focus {
+    outline: none;
+}
+
+header form i {
+    color: rgb(0, 0, 0);
+    background-color: rgb(190, 190, 190);
+    padding: 10px;
+}
+
+header .part2 .user i {
+    color: white;
+    font-size: 35px;
+    margin: 0 20px 0 70px;
+    transition: .6s;
+}
+
+header .part2 .user i:hover {
+    color: wheat;
+}
+
+.burger {
+    display: none;
+}
+
+.burger nav {
+    display: none;
+}
+
+main {
+    background-color: rgb(13, 13, 14);
+    height: 2000px;
+    display: flex;
+    justify-content: center;
+}
+
+main .content {
+    margin-top: 40px;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+main .content .heading {
+    color: wheat;
+    font-size: 25px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .content .heading .line {
+    width: 30%;
+    background-color: blanchedalmond;
+    margin-top: 5px;
+    height: 1px;
+}
+
+main .content .part_of_recomendations {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    color: wheat;
+}
+
+main .content .part_of_recomendations h3 {
+    display: block;
+    font-size: 40px;
+    margin: 0 0 10px 30px;
+}
+
+main .content .part_of_recomendations .films {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+main .content .part_of_recomendations .films .film {
+    border: solid 1px wheat;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    transition: 0.7s;
+    width: 250px;
+    height: 350px;
+    overflow: hidden;
+    margin: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+main .content .part_of_recomendations .films .film img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+main .content .part_of_recomendations .films .film .description {
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    color: wheat;
+}
+
+main .content .part_of_recomendations .films .film:hover {
+    height: 450px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+main .part_of_recomendations .films .film img {
+    height: 350px;
+}
+
+main .content hr {
+    width: 89%;
+    margin-left: 15px;
+    opacity: .2;
+    margin-bottom: 30px;
+    height: 1px;
+}
+
+footer {
+    background-color: black;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+footer .container {
+    width: 800px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer .container .social {
+    display: flex;
+    flex-direction: row;
+}
+
+footer .container .social a i {
+    color: white;
+    margin: 20px;
+    padding: 10px;
+    transition: .5s;
+    font-size: 30px;
+}
+
+footer .container .social a i:hover {
+    opacity: .5;
+}
+
+footer .container .contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+footer .container .contacts .email {
+    margin: 15px;
+}
+
+footer .container .contacts .email a {
+    color: white;
+    transition: .6s;
+}
+
+footer .container .contacts .email i {
+    color: white;
+    margin-right: 5px;
+}
+
+footer .container .contacts .email a:hover {
+    opacity: .7;
+}
+
+footer .container .contacts .phone {
+    margin: 15px;
+}
+
+footer .container .contacts .phone a {
+    color: white;
+    transition: .6s;
+}
+
+footer .container .contacts .phone i {
+    color: white;
+    margin-right: 5px;
+}
+
+footer .container .contacts .phone a:hover {
+    opacity: .7;
+}
+
+@media (max-width: 1386px) {
+    header .part2 form {
+        display: none;
+    }
+}
+
+@media (max-width: 955px) {
+    header .logo {
+        display: none;
+    }
+    header .part1 {
+        width: 75%;
+    }
+    header .part2 {
+        width: 25%;
+    }
+}
+
+@media (max-width: 784px) {
+    header .part1 {
+        display: none;
+    }
+    header .part2 {
+        display: none;
+    }
+    .burger {
+        display: block;
+        color: wheat;
+        background-color: rgb(20, 20, 20);
+        margin-bottom: -20px;
+    }
+    .burger i {
+        color: wheat;
+        font-size: 30px;
+        padding: 20px 0 0 20px;
+    }
+}
