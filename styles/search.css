@@ -143,14 +143,6 @@ header .part2 .user i:hover {
     color: wheat;
 }
 
-.burger {
-    display: none;
-}
-
-.burger nav {
-    display: none;
-}
-
 main {
     background-color: rgb(20, 20, 20);
     display: flex;
@@ -205,6 +197,10 @@ main .results .result .stars {
     width: 80%;
 }
 
+main .results .result .stars {
+    white-space: nowrap;
+}
+
 main .results .result .stars i {
     margin-right: 7px;
 }
@@ -212,6 +208,7 @@ main .results .result .stars i {
 main .results .result .title h3 {
     font-size: 35px;
     margin-bottom: 20px;
+    white-space: nowrap;
 }
 
 main .results .result .description {
@@ -302,7 +299,13 @@ footer .container .contacts .phone a:hover {
 
 @media (min-width: 1651px) {
     main {
-        height: 1000px;
+        height: 930px;
+    }
+}
+
+@media (max-width: 1600px) {
+    header form {
+        display: none;
     }
 }
 
@@ -312,34 +315,107 @@ footer .container .contacts .phone a:hover {
     }
 }
 
-@media (max-width: 955px) {
+@media (max-width: 1169px) {
     header .logo {
         display: none;
     }
-    header .part1 {
-        width: 75%;
-    }
-    header .part2 {
-        width: 25%;
+}
+
+@media (max-width: 994px) {
+    header nav .block {
+        margin: 20px;
     }
 }
 
-@media (max-width: 784px) {
-    header .part1 {
+@media (max-width: 884px) {
+    header .part1 nav {
+        font-size: 20px;
+    }
+    header nav .delimiter {
         display: none;
     }
-    header .part2 {
-        display: none;
+    main .results .result {
+        flex-direction: column;
+        align-items: center;
     }
-    .burger {
-        display: block;
-        color: wheat;
-        background-color: rgb(20, 20, 20);
-        margin-bottom: -20px;
+    main .results .result .poster {
+        margin-bottom: 20px;
     }
-    .burger i {
-        color: wheat;
+    main .results .result .description {
+        text-align: justify;
+    }
+}
+
+@media (max-width: 660px) {
+    header .part1 nav {
+        font-size: 15px;
+    }
+    main h2 {
         font-size: 30px;
-        padding: 20px 0 0 20px;
+    }
+}
+
+@media (max-width: 546px) {
+    header nav .block {
+        margin: 15px;
+    }
+}
+
+@media (max-width: 492px) {
+    header nav .block {
+        margin: 10px;
+    }
+    footer .container .social a i {
+        font-size: 25px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 450px) {
+    header nav .block {
+        margin: 7px;
+    }
+    main .results .result .title h3 {
+        font-size: 30px;
+    }
+    main .results .result .description {
+        font-size: 20px;
+    }
+    main .results .result .stars {
+        font-size: 15px;
+    }
+    main h2 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 409px) {
+    header .part1 nav {
+        font-size: 13px;
+    }
+    main .results .result .title h3 {
+        font-size: 25px;
+    }
+    main h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 370px) {
+    header .part1 nav {
+        font-size: 11px;
+    }
+    footer .container .social a i {
+        padding: 0px;
+        margin: 15px;
+    }
+    main .results .result .title h3 {
+        font-size: 20px;
+    }
+    main .results .result .description {
+        font-size: 15px;
+    }
+    main h2 {
+        font-size: 20px;
     }
 }

@@ -501,14 +501,14 @@ footer .container .contacts .phone a:hover {
 }
 
 @media (max-width: 1169px) {
+    header .logo {
+        display: none;
+    }
     main .content .galery .frames img {
         height: auto;
         width: 200px;
         margin-right: 20px;
         border-radius: 10px;
-    }
-    header .logo {
-        display: none;
     }
 }
 
@@ -556,8 +556,6 @@ footer .container .contacts .phone a:hover {
     main .content .galery .frames img {
         height: auto;
         width: 100px;
-        margin-right: 20px;
-        border-radius: 10px;
     }
 }
 
