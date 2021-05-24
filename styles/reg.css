@@ -52,7 +52,6 @@ header .container nav {
 
 header nav .block {
     margin: 30px;
-    white-space: nowrap;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -147,93 +146,59 @@ header .part2 .user i:hover {
     display: none;
 }
 
+.burger nav {
+    display: none;
+}
+
 main {
     background-color: rgb(20, 20, 20);
+    height: 600px;
     display: flex;
     justify-content: center;
-}
-
-main .content {
-    margin-top: 40px;
-    width: 85%;
-    display: flex;
     align-items: center;
-    flex-direction: column;
 }
 
-main .content .heading {
+main .reg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
     color: wheat;
-    font-size: 25px;
-    margin-bottom: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-main .content .part_of_recomendations {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100%;
-    color: wheat;
-}
-
-main .content .part_of_recomendations h3 {
-    display: block;
-    font-size: 40px;
-    margin: 0 0 10px 30px;
-}
-
-main .content .part_of_recomendations .films {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-main .content .part_of_recomendations .films .film {
-    border: solid 1px wheat;
+    width: 300px;
     background-color: black;
-    display: flex;
-    flex-direction: column;
-    transition: .7s;
-    width: 250px;
-    height: 350px;
-    overflow: hidden;
-    margin: 20px;
-    border-radius: 15px;
-    cursor: pointer;
+    padding: 30px;
+    border-radius: 20px;
 }
 
-main .content .part_of_recomendations .films .film img {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+main .reg h2 {
+    font-size: 30px;
 }
 
-main .content .part_of_recomendations .films .film .description {
-    text-align: center;
+main .reg input {
+    margin-top: 15px;
     padding: 10px;
-    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+}
+
+main .reg .button {
+    margin-top: 15px;
+    padding: 10px 30px;
+    background-color: gray;
     color: wheat;
+    font-size: 20px;
+    border-radius: 20px;
+    text-align: center;
+    transition: .5s;
 }
 
-main .content .part_of_recomendations .films .film:hover {
-    height: 450px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+main .reg .button:hover {
+    background-color: rgb(163, 163, 163);
 }
 
-main .part_of_recomendations .films .film img {
-    height: 350px;
-}
-
-main .content hr {
-    width: 89%;
-    margin-left: 15px;
-    opacity: .2;
-    margin-bottom: 30px;
-    height: 1px;
+main .reg .button:active {
+    background-color: rgb(51, 51, 51);
+    transition: .1s;
 }
 
 footer {
@@ -313,111 +278,43 @@ footer .container .contacts .phone a:hover {
     opacity: .7;
 }
 
-@media (max-width: 1600px) {
-    header form {
-        display: none;
-    }
-}
-
 @media (max-width: 1386px) {
     header .part2 form {
         display: none;
     }
-    main .part_of_recomendations .films .film img {
-        height: 300px;
-    }
-    main .content .part_of_recomendations .films .film {
-        width: 200px;
-        height: 300px;
-    }
 }
 
-@media (max-width: 1166px) {
+@media (max-width: 955px) {
     header .logo {
         display: none;
     }
     header .part1 {
         width: 75%;
     }
-}
-
-@media (max-width: 994px) {
-    header nav .block {
-        margin: 20px;
-    }
-    main .part_of_recomendations .films .film img {
-        height: 270px;
-    }
-    main .content .part_of_recomendations .films .film {
-        width: 170px;
-        height: 270px;
+    header .part2 {
+        width: 25%;
     }
 }
 
-@media (max-width: 884px) {
-    header .part1 nav {
-        font-size: 20px;
-    }
-    header nav .delimiter {
+@media (max-width: 784px) {
+    header {
         display: none;
     }
-    header .part2 .user i {
-        font-size: 20px;
-    }
-    main .content .heading {
-        font-size: 20px;
-    }
-    main .content .part_of_recomendations {
-        text-align: center;
-    }
-    main .content .part_of_recomendations h3 {
-        margin: 0;
-        font-size: 25px;
-    }
-    main .content .part_of_recomendations .films {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 660px) {
-    header .part1 nav {
-        font-size: 15px;
-    }
-    header .part2 .user i {
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 546px) {
-    header nav .block {
-        margin: 15px;
-    }
-    main .content .heading {
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 450px) {
-    header nav .block {
-        margin: 10px;
-    }
-}
-
-@media (max-width: 420px) {
-    header nav .block {
-        margin: 7px;
-    }
-    header .part2 .user i {
-        font-size: 13px;
-    }
     header .part1 {
-        width: 90%;
+        display: none;
     }
     header .part2 {
-        width: 10%;
+        display: none;
     }
-    header .part2 .user {
-        display: flex;
-        justify-content: flex-end;
+    .burger {
+        display: block;
+        color: wheat;
+        background-color: rgb(20, 20, 20);
+        margin-bottom: -20px;
+    }
+    .burger i {
+        color: wheat;
+        font-size: 30px;
+        padding: 20px 0 0 20px;
     }
 }

@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -212,7 +214,7 @@ main .results .result .title h3 {
 }
 
 main .results .result .description {
-    font-size: 23px;
+    font-size: 21px;
     color: wheat;
 }
 

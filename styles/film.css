@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -247,6 +248,21 @@ main .content .info .part2 .stats hr {
     width: 100%;
     background-color: rgb(83, 83, 83);
     opacity: .2;
+}
+
+main .content .description {
+    margin-top: 20px;
+    color: wheat;
+    text-align: justify;
+}
+
+main .content .description h2 {
+    font-size: 35px;
+}
+
+main .content .description p {
+    margin-top: 20px;
+    font-size: 23px;
 }
 
 main .content .galery {
