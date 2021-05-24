@@ -143,10 +143,6 @@ header .part2 .user i:hover {
     color: wheat;
 }
 
-.burger {
-    display: none;
-}
-
 main {
     background-color: rgb(20, 20, 20);
     display: flex;
@@ -383,9 +379,6 @@ footer .container .contacts .phone a:hover {
     header .part1 nav {
         font-size: 15px;
     }
-    header .part2 .user i {
-        font-size: 15px;
-    }
 }
 
 @media (max-width: 546px) {
@@ -397,27 +390,38 @@ footer .container .contacts .phone a:hover {
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 492px) {
     header nav .block {
         margin: 10px;
     }
+    footer .container .social a i {
+        font-size: 25px;
+        padding: 5px;
+    }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     header nav .block {
         margin: 7px;
-    }
-    header .part2 .user i {
-        font-size: 13px;
-    }
-    header .part1 {
-        width: 90%;
-    }
-    header .part2 {
-        width: 10%;
     }
     header .part2 .user {
         display: flex;
         justify-content: flex-end;
+    }
+}
+
+@media (max-width: 409px) {
+    header .part1 nav {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 365px) {
+    header .part1 nav {
+        font-size: 11px;
+    }
+    footer .container .social a i {
+        padding: 0px;
+        margin: 15px;
     }
 }
