@@ -332,9 +332,6 @@ footer .container .contacts .phone a:hover {
     header .logo {
         display: none;
     }
-    header .part1 {
-        width: 75%;
-    }
 }
 
 @media (max-width: 994px) {
@@ -356,9 +353,6 @@ footer .container .contacts .phone a:hover {
     }
     header nav .delimiter {
         display: none;
-    }
-    header .part2 .user i {
-        font-size: 20px;
     }
     main .content .heading {
         font-size: 20px;
@@ -403,10 +397,6 @@ footer .container .contacts .phone a:hover {
 @media (max-width: 450px) {
     header nav .block {
         margin: 7px;
-    }
-    header .part2 .user {
-        display: flex;
-        justify-content: flex-end;
     }
 }
 

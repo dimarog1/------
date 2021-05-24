@@ -52,6 +52,7 @@ header .container nav {
 
 header nav .block {
     margin: 30px;
+    white-space: nowrap;
     display: flex;
     flex-direction: column;
     align-items: center;

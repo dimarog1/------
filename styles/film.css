@@ -52,6 +52,7 @@ header .container nav {
 
 header nav .block {
     margin: 30px;
+    white-space: nowrap;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -140,14 +141,6 @@ header .part2 .user i {
 
 header .part2 .user i:hover {
     color: wheat;
-}
-
-.burger {
-    display: none;
-}
-
-.burger nav {
-    display: none;
 }
 
 main {
@@ -471,6 +464,12 @@ footer .container .contacts .phone a:hover {
     }
 }
 
+@media (max-width: 1600px) {
+    header form {
+        display: none;
+    }
+}
+
 @media (max-width: 1386px) {
     header .part2 form {
         display: none;
@@ -508,17 +507,20 @@ footer .container .contacts .phone a:hover {
         margin-right: 20px;
         border-radius: 10px;
     }
+    header .logo {
+        display: none;
+    }
+}
+
+@media (max-width: 994px) {
+    header nav .block {
+        margin: 20px;
+    }
 }
 
 @media (max-width: 955px) {
     header .logo {
         display: none;
-    }
-    header .part1 {
-        width: 75%;
-    }
-    header .part2 {
-        width: 25%;
     }
     main .content .info .part1 .poster {
         width: 300px;
@@ -535,30 +537,148 @@ footer .container .contacts .phone a:hover {
         margin-top: 20px;
         border-radius: 10px;
     }
+    main .content .info .part2 .title h2 {
+        font-size: 45px;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 884px) {
+    header .part1 nav {
+        font-size: 20px;
+    }
+    header nav .delimiter {
+        display: none;
+    }
 }
 
 @media (max-width: 784px) {
-    header .part1 {
-        display: none;
-    }
-    header .part2 {
-        display: none;
-    }
-    .burger {
-        display: block;
-        color: wheat;
-        background-color: rgb(20, 20, 20);
-        margin-bottom: -20px;
-    }
-    .burger i {
-        color: wheat;
-        font-size: 30px;
-        padding: 20px 0 0 20px;
-    }
     main .content .galery .frames img {
         height: auto;
         width: 100px;
         margin-right: 20px;
         border-radius: 10px;
+    }
+}
+
+@media (max-width: 702px) {
+    main .content .info .part2 .stats .part {
+        flex-direction: column;
+        align-items: center;
+    }
+    main .content .info .part2 .stats .part .name {
+        margin-bottom: 20px;
+        font-weight: bold;
+        width: auto;
+        white-space: nowrap;
+    }
+    main .content .info .part2 .stats .part .stat {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 660px) {
+    header .part1 nav {
+        font-size: 15px;
+    }
+    main .content .info .part2 .title h2 {
+        font-size: 30px;
+    }
+    main .content .info .part2 .title .stars {
+        font-size: 25px;
+    }
+    main .content .info .part2 .title .stars i {
+        margin-right: 3px;
+    }
+}
+
+@media (max-width: 546px) {
+    header nav .block {
+        margin: 15px;
+    }
+    main .content .heading {
+        font-size: 15px;
+    }
+    main .content .info .part2 .title h2 {
+        font-size: 25px;
+        white-space: nowrap;
+    }
+    main .content .description h2 {
+        font-size: 30px;
+    }
+    main .content .description p {
+        font-size: 20px;
+    }
+    main .content .galery h2 {
+        font-size: 30px;
+    }
+    main .content .reviews h2 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 492px) {
+    header nav .block {
+        margin: 10px;
+    }
+    footer .container .social a i {
+        font-size: 25px;
+        padding: 5px;
+    }
+    main .content .info .part1 iframe {
+        height: 150px;
+        width: 360px;
+    }
+    main .content .info .part2 .title .stars {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    header nav .block {
+        margin: 7px;
+    }
+    main .content .info .part1 iframe {
+        height: 120px;
+        width: 289px;
+    }
+    main .content .info .part2 .title .stars {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 409px) {
+    header .part1 nav {
+        font-size: 13px;
+    }
+    main .content .info .part2 .title .stars {
+        display: none;
+    }
+    main .content .reviews .review .head .stars {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 365px) {
+    header .part1 nav {
+        font-size: 11px;
+    }
+    footer .container .social a i {
+        padding: 0px;
+        margin: 15px;
+    }
+    main .content .description h2 {
+        font-size: 25px;
+    }
+    main .content .description p {
+        font-size: 15px;
+    }
+    main .content .galery h2 {
+        font-size: 25px;
+    }
+    main .content .reviews h2 {
+        font-size: 25px;
     }
 }
