@@ -426,3 +426,9 @@ footer .container .contacts .phone a:hover {
         font-size: 20px;
     }
 }
+
+@media (max-width: 318px) {
+    header .part1 nav {
+        font-size: 9px;
+    }
+}

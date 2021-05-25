@@ -1,4 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?fr66lx');
+    src: url('fonts/icomoon.eot?fr66lx#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?fr66lx') format('truetype'), url('fonts/icomoon.woff?fr66lx') format('woff'), url('fonts/icomoon.svg?fr66lx#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -155,6 +178,7 @@ main .content {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 50px;
 }
 
 main .content .heading {
@@ -438,5 +462,11 @@ footer .container .contacts .phone a:hover {
     }
     main .content .heading {
         font-size: 11px;
+    }
+}
+
+@media (max-width: 318px) {
+    header .part1 nav {
+        font-size: 9px;
     }
 }
