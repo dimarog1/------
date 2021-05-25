@@ -328,11 +328,18 @@ footer .container .contacts .phone a:hover {
 }
 
 @media (max-width: 884px) {
+    header {
+        position: fixed;
+        width: 100%;
+    }
     header .part1 nav {
         font-size: 20px;
     }
     header nav .delimiter {
         display: none;
+    }
+    main .content {
+        margin-top: 60px;
     }
     main .results .result {
         flex-direction: column;
