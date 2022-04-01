@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/search.css') }}"/>
+    <title>{{ title }}</title>
+</head>
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <h2>Что мы нашли по запросу ...</h2>
+    <div class="results">
+        <a href="film.html" class="result">
+            <div class="poster">
+                <img src="images/1.jpg" alt="#">
+            </div>
+            <div class="description">
+                <div class="title">
+                    <h3>Билет на Вегас</h3>
+                    <div class="stars">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        4.0 / 10
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis explicabo fugiat, unde
+                    eligendi aspernatur debitis quibusdam tenetur officiis magnam esse id, assumenda atque iure,
+                    placeat nulla repudiandae iusto voluptatem fugit?
+                    Perspiciatis, dolore quisquam a modi, eius doloribus necessitatibus asperiores est numquam
+                    porro dolores. Qui molestiae libero ipsum quisquam voluptas consequatur dolorum, et
+                    perferendis sit aspernatur animi corrupti tenetur eveniet a.
+                    Nisi facere dicta, dolores, harum amet ex dolorum explicabo animi delectus alias quibusdam
+                    quaerat qui deleniti nesciunt quia eaque, at debitis cupiditate dolorem? Soluta dignissimos
+                    facere quam provident iure nulla.</p>
+            </div>
+        </a>
+        <a href="film.html" class="result">
+            <div class="poster">
+                <img src="images/1.jpg" alt="#">
+            </div>
+            <div class="description">
+                <div class="title">
+                    <h3>Билет на Вегас</h3>
+                    <div class="stars">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        4.0 / 10
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis explicabo fugiat, unde
+                    eligendi aspernatur debitis quibusdam tenetur officiis magnam esse id, assumenda atque iure,
+                    placeat nulla repudiandae iusto voluptatem fugit?
+                    Perspiciatis, dolore quisquam a modi, eius doloribus necessitatibus asperiores est numquam
+                    porro dolores. Qui molestiae libero ipsum quisquam voluptas consequatur dolorum, et
+                    perferendis sit aspernatur animi corrupti tenetur eveniet a.
+                    Nisi facere dicta, dolores, harum amet ex dolorum explicabo animi delectus alias quibusdam
+                    quaerat qui deleniti nesciunt quia eaque, at debitis cupiditate dolorem? Soluta dignissimos
+                    facere quam provident iure nulla.</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

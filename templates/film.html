@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/film.css') }}" />
+    <title>{{ title }}</title>
+</head>
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <div class="info">
+        <div class="part1">
+            <img src="images/1.jpg" alt="#" class="poster">
+            <iframe class="trailer" src="videos/Vegas.mp4" frameborder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope;"></iframe>
+        </div>
+        <div class="part2">
+            <div class="title">
+                <h2>{{ film.title }}</h2>
+                <div class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    4.0 / 10
+                </div>
+            </div>
+            <span class="rating">{{ film.age }}+</span>
+            <h3>О фильме</h3>
+            <div class="stats">
+                <div class="part">
+                    <div class="name">Год
+                    </div>
+                    <div class="stat">{{ film.year }}</div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Страна</div>
+                    <div class="stat">{{ film.country }}</div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Жанр</div>
+                    <div class="stat">
+                        {{ film.genre }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Слоган</div>
+                    <div class="stat">
+                        {{ film.slogan }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Режиссер</div>
+                    <div class="stat">
+                        {{ film.director }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Сценарий</div>
+                    <div class="stat">
+                        {{ film.scenario }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Продюсер</div>
+                    <div class="stat">
+                        {{ film.producer }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Оператор</div>
+                    <div class="stat">
+                        {{ film.operator }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Композитор</div>
+                    <div class="stat">
+                        {{ film.composer }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Художник</div>
+                    <div class="stat">
+                        {{ film.year }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Монтаж</div>
+                    <div class="stat">{{ film.designer }}</div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Бюджет</div>
+                    <div class="stat">${{ film.montage }}</div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Сборы в мире</div>
+                    <div class="stat">
+                        ${{ film.budget }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Зрители</div>
+                    <div class="stat">
+                        {{ film.audience }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Сборы в России
+                    </div>
+                    <div class="stat">
+                        ${{ film.fees_in_russia }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Премьера в мире</div>
+                    <div class="stat">
+                        {{ film.world_premiere }}
+                    </div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Возраст</div>
+                    <div class="stat">{{ film.year }}+</div>
+                </div>
+                <hr>
+                <div class="part">
+                    <div class="name">Время</div>
+                    <div class="stat">
+                        {{ film.time }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="description">
+        <h2>Описание</h2>
+        <p>{{ film.long_description }}</p>
+    </div>
+    <div class="galery">
+        <h2>Кадры из фильма</h2>
+        <div class="frames">
+            <img src="frames/1.jpg" alt="">
+            <img src="frames/2.jpg" alt="">
+            <img src="frames/3.jpg" alt="">
+            <img src="frames/4.jpg" alt="">
+        </div>
+    </div>
+    <div class="reviews">
+        <h2>Отзывы</h2>
+        <div class="review">
+            <div class="head">
+                <div class="profile">
+                    <img src="avatars/1.jpg" alt="#">
+                    <p>Андрей Александрович</p>
+                </div>
+                <div class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    4.0
+                </div>
+            </div>
+            <div class="text">
+                <h3>Не ходите, дети, в Вегасы гулять.</h3>
+                <p>
+                    Как хотелось бы наконец написать положительную, наполненную морем ярких и восторженных
+                    эпитетов рецензию на отечественную комедию но, к сожалению, не получается кривить душой.
+                    Фильм вышел не самый лучший. Впрочем, это даже доказывает определенную стабильность нашего
+                    кинопрома, на гора выдающего типовые, иногда забавные, но бездушные картины.
+                    <br>
+                    Вкратце по сюжету. Молодой врач-рентгенолог Макс обустраивает 'скромные' московские
+                    аппартаменты-студию и оживленно переругивается со своею подругой Лизой. Проблемы у молодой
+                    пары поистине эпические - не могут поделить, кому выносить мусор. Этот страшный вопрос
+                    приводит к разрыву, но, вдруг, о чудо! Лотерейный билет, который Макс и Лиза купили до ссоры
+                    оказывается выигрышным и пара должна получить 150 миллионов рублей. Причем не где-нибудь, а
+                    именно в Лас-Вегасе. В поездку, чтобы за компанию окунуться в чудесный мир капиталистических
+                    пороков, так же отправляются друг Макса Дима и подруга Лизы Олеся.
+                </p>
+            </div>
+            <div class="comments">
+                        <span class="likes">
+                            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            100
+                        </span>
+                <span class="dislikes">
+                            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                            10
+                        </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

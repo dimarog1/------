@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <title>{{ title }}</title>
+</head>
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="heading">
+            <h1>Наши рекомендации</h1>
+        </div>
+        <div class="part_of_recomendations">
+            <h3>Комедии</h3>
+            <div class="films">
+                {% for film in films %}
+                    <a href="/films/{{ film.id }}" class="film">
+                        <img src="images/1.jpg" alt="#">
+                        <div class="description">
+                            <p> {{ film.short_description }} </p>
+                        </div>
+                    </a>
+                {% endfor %}
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/2.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/3.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/4.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/5.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <hr>-->
+<!--        </div>-->
+<!--        <div class="part_of_recomendations">-->
+<!--            <h3>Фантастика</h3>-->
+<!--            <div class="films">-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/2.1.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/2.2.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/2.3.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/2.4.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/2.5.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <hr>-->
+<!--        </div>-->
+<!--        <div class="part_of_recomendations">-->
+<!--            <h3>Драммы</h3>-->
+<!--            <div class="films">-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/4.1.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/4.2.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/4.3.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/4.4.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/4.5.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <hr>-->
+<!--        </div>-->
+<!--        <div class="part_of_recomendations">-->
+<!--            <h3>Ужасы</h3>-->
+<!--            <div class="films">-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/3.1.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/3.2.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/3.3.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/3.4.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <a href="film.html" class="film">-->
+<!--                    <img src="images/3.5.jpg" alt="">-->
+<!--                    <div class="description">-->
+<!--                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic cumque, modi sint-->
+<!--                            necessitatibus sapiente libero voluptates totam.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
