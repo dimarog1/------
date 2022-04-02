@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+header .container {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .container .logo {
+    width: 15%;
+}
+
+header .logo a {
+    color: wheat;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'KoHo';
+}
+
+header .part1 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+header .container nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
+}
+
+header nav .block {
+    margin: 30px;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header nav .block a {
+    color: burlywood;
+    margin-bottom: 5px;
+}
+
+header nav .delimiter {
+    display: block;
+    width: 1px;
+    height: 30px;
+    margin: auto 0;
+    background-color: black;
+    transition: 1s;
+}
+
+header:hover nav .delimiter {
+    background-color: wheat;
+}
+
+header nav .block .line {
+    background-color: black;
+    width: 0%;
+    height: 1px;
+    transition: 0.7s;
+}
+
+header nav .block {
+    cursor: pointer;
+}
+
+header nav .block:hover .line {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+
+header .part2 {
+    width: 35%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+}
+
+header form {
+    background-color: rgb(190, 190, 190);
+    opacity: .8;
+    border-radius: 15px;
+    padding: 1px 10px;
+    transition: 0.7s;
+}
+
+header form input {
+    height: 30px;
+    padding: 10px;
+    border: none;
+    background-color: rgb(190, 190, 190);
+    font-size: 20px;
+    font-weight: 600px;
+}
+
+header form:hover {
+    box-shadow: 0 0 10px 3px burlywood;
+}
+
+header form input:focus {
+    outline: none;
+}
+
+header form i {
+    color: rgb(0, 0, 0);
+    background-color: rgb(190, 190, 190);
+    padding: 10px;
+}
+
+header .part2 .user i {
+    color: white;
+    font-size: 35px;
+    margin: 0 20px 0 70px;
+    transition: .6s;
+}
+
+header .part2 .user i:hover {
+    color: wheat;
+}
+
+main {
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    justify-content: center;
+}
+
+main .content {
+    width: 85%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+main h2 {
+    color: wheat;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+main .results .result {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    padding: 20px;
+    border-radius: 20px;
+    transition: .7s;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 30px 0;
+}
+
+main .results .result .poster {
+    margin-right: 30px;
+}
+
+main .results .result img {
+    height: 200px;
+    border-radius: 10px;
+}
+
+main .results .result .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+main .results .result .stars {
+    display: flex;
+    justify-content: flex-end;
+    color: gold;
+    font-size: 20px;
+    width: 80%;
+}
+
+main .results .result .stars {
+    white-space: nowrap;
+}
+
+main .results .result .stars i {
+    margin-right: 7px;
+}
+
+main .results .result .title h3 {
+    font-size: 35px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
+main .results .result .description {
+    font-size: 21px;
+    color: wheat;
+}
+
+main .results .result:hover {
+    border: 1px solid wheat;
+}
+
+footer {
+    background-color: black;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+footer .container {
+    width: 800px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer .container .social {
+    display: flex;
+    flex-direction: row;
+}
+
+footer .container .social a i {
+    color: white;
+    margin: 20px;
+    padding: 10px;
+    transition: .5s;
+    font-size: 30px;
+}
+
+footer .container .social a i:hover {
+    opacity: .5;
+}
+
+footer .container .contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+footer .container .contacts .email {
+    margin: 15px;
+}
+
+footer .container .contacts .email a {
+    color: white;
+    transition: .6s;
+}
+
+footer .container .contacts .email i {
+    color: white;
+    margin-right: 5px;
+}
+
+footer .container .contacts .email a:hover {
+    opacity: .7;
+}
+
+footer .container .contacts .phone {
+    margin: 15px;
+}
+
+footer .container .contacts .phone a {
+    color: white;
+    transition: .6s;
+}
+
+footer .container .contacts .phone i {
+    color: white;
+    margin-right: 5px;
+}
+
+footer .container .contacts .phone a:hover {
+    opacity: .7;
+}
+
+@media (min-width: 1651px) {
+    main {
+        height: 930px;
+    }
+}
+
+@media (max-width: 1600px) {
+    header form {
+        display: none;
+    }
+}
+
+@media (max-width: 1386px) {
+    header .part2 form {
+        display: none;
+    }
+}
+
+@media (max-width: 1169px) {
+    header .logo {
+        display: none;
+    }
+}
+
+@media (max-width: 994px) {
+    header nav .block {
+        margin: 20px;
+    }
+}
+
+@media (max-width: 884px) {
+    header {
+        position: fixed;
+        width: 100%;
+    }
+    header .part1 nav {
+        font-size: 20px;
+    }
+    header nav .delimiter {
+        display: none;
+    }
+    main .content {
+        margin-top: 60px;
+    }
+    main .results .result {
+        flex-direction: column;
+        align-items: center;
+    }
+    main .results .result .poster {
+        margin-bottom: 20px;
+    }
+    main .results .result .description {
+        text-align: justify;
+    }
+}
+
+@media (max-width: 660px) {
+    header .part1 nav {
+        font-size: 15px;
+    }
+    main h2 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 546px) {
+    header nav .block {
+        margin: 15px;
+    }
+}
+
+@media (max-width: 492px) {
+    header nav .block {
+        margin: 10px;
+    }
+    footer .container .social a i {
+        font-size: 25px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 450px) {
+    header nav .block {
+        margin: 7px;
+    }
+    main .results .result .title h3 {
+        font-size: 30px;
+    }
+    main .results .result .description {
+        font-size: 20px;
+    }
+    main .results .result .stars {
+        font-size: 15px;
+    }
+    main h2 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 409px) {
+    header .part1 nav {
+        font-size: 13px;
+    }
+    main .results .result .title h3 {
+        font-size: 25px;
+    }
+    main h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 370px) {
+    header .part1 nav {
+        font-size: 11px;
+    }
+    footer .container .social a i {
+        padding: 0px;
+        margin: 15px;
+    }
+    main .results .result .title h3 {
+        font-size: 20px;
+    }
+    main .results .result .description {
+        font-size: 15px;
+    }
+    main h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 318px) {
+    header .part1 nav {
+        font-size: 9px;
+    }
+}

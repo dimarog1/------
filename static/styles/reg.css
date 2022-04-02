@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: rgb(20, 20, 20)
+}
+
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .reg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+    color: wheat;
+    width: 600px;
+    background-color: black;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+main .reg h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+main .reg input {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 500px;
+    font-size: 20px;
+}
+
+main .reg .button {
+    margin-top: 15px;
+    padding: 10px 235px;
+    background-color: gray;
+    color: wheat;
+    font-size: 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition: .5s;
+}
+
+main .reg .button:hover {
+    background-color: rgb(163, 163, 163);
+}
+
+main .reg .button:active {
+    background-color: rgb(51, 51, 51);
+    transition: .1s;
+}
+
+@media (max-width: 614px) {
+    main .reg {
+        width: 400px;
+        padding: 30px;
+    }
+    main .reg h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    main .reg input {
+        margin-top: 15px;
+        padding: 10px;
+        width: 300px;
+        font-size: 20px;
+    }
+    main .reg .button {
+        margin-top: 15px;
+        padding: 10px 140px;
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 410px) {
+    main .reg {
+        width: 200px;
+        padding: 30px;
+    }
+    main .reg h2 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    main .reg input {
+        margin-top: 15px;
+        padding: 10px;
+        width: 150px;
+        font-size: 15px;
+    }
+    main .reg .button {
+        margin-top: 15px;
+        padding: 5px 65px;
+        font-size: 20px;
+    }
+}
