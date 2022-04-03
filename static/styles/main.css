@@ -244,8 +244,9 @@ main .content .part_of_recomendations .films .film:hover {
     border-bottom-right-radius: 15px;
 }
 
-main .part_of_recomendations .films .film img {
+main .part_of_recomendations .films .film .image img {
     height: 350px;
+    width: 248px;
 }
 
 main .content hr {

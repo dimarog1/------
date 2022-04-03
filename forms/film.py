@@ -1,12 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, FileField, SubmitField
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from wtforms import StringField, IntegerField, SubmitField
 from wtforms.validators import DataRequired
 
 
 class FilmForm(FlaskForm):
     title = StringField('Название фильма', validators=[DataRequired()])
     year = IntegerField('Год выпуска', validators=[DataRequired()])
-    # poster = FileField('Постер', validators=[DataRequired()])
+    poster = FileField('Постер', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg'])])
     country = StringField('Страна')
     genre = StringField('Жанр', validators=[DataRequired()])
     slogan = StringField('Слоган')

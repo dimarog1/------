@@ -18,7 +18,7 @@
 
 {% block content %}
 <h1>Добавление фильма</h1>
-<form action="" method="post">
+<form method="POST" action="" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <p>
         {{ form.title.label }}<br>
@@ -33,6 +33,15 @@
         {{ form.year.label }}<br>
         {{ form.year(class="form-control") }}<br>
         {% for error in form.year.errors %}
+            <p content="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.poster.label }}<br>
+        {{ form.poster(class="form-control-file") }}<br>
+        {% for error in form.poster.errors %}
             <p content="alert alert-danger" role="alert">
                 {{ error }}
             </p>
@@ -209,7 +218,7 @@
             </p>
         {% endfor %}
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{ form.submit(type="submit", class="btn btn-primary") }}
     {{ message }}
 </form>
 {% endblock %}

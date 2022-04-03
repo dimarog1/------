@@ -23,7 +23,9 @@
             <div class="films">
                 {% for film in films %}
                     <a href="/films/{{ film.id }}" class="film">
-                        <img src="images/1.jpg" alt="#">
+                        <div class="image">
+                            <img src="data:image/gif;base64,{{ film.poster }}" alt="Не удалось загрузить картинку">
+                        </div>
                         <div class="description">
                             <p> {{ film.short_description }} </p>
                         </div>

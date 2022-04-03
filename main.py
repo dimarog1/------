@@ -1,10 +1,12 @@
 import datetime
-from flask import Flask, render_template
-from werkzeug.utils import redirect
+import base64
+
+from flask import Flask, render_template, request
+from werkzeug.utils import redirect, secure_filename
 
 from data import db_session
-from forms.film import FilmForm
 from data.film import Film
+from forms.film import FilmForm
 
 app = Flask(__name__)
 
@@ -12,6 +14,15 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
     days=365
 )
+
+
+def readImage(image_name):
+    try:
+        with open(image_name, 'rb') as file:
+            image = file.read()
+        return image
+    except Exception as e:
+        print("ERROR!!", e)
 
 
 @app.route("/")
@@ -34,32 +45,35 @@ def add_film():
         db_sess = db_session.create_session()
 
         film = Film()
-        film.title = form.title.data
-        film.year = form.year.data
-        # film.poster = form.poster.data
-        film.country = form.country.data
-        film.genre = form.genre.data
-        film.slogan = form.slogan.data
-        film.director = form.director.data
-        film.scenario = form.scenario.data
-        film.producer = form.producer.data
-        film.operator = form.operator.data
-        film.composer = form.composer.data
-        film.designer = form.designer.data
-        film.montage = form.montage.data
-        film.budget = form.budget.data
-        film.fees_in_the_world = form.fees_in_the_world.data
-        film.audience = form.audience.data
-        film.fees_in_russia = form.fees_in_russia.data
-        film.world_premiere = form.world_premiere.data
-        film.age = form.age.data
-        film.time = form.time.data
-        film.short_description = form.short_description.data
-        film.long_description = form.long_description.data
+        if form.poster:
+            film.title = form.title.data
+            film.year = form.year.data
 
-        db_sess.add(film)
-        db_sess.commit()
-        return redirect('/')
+            film.poster = str(base64.b64encode(form.poster.data.stream.read()))[2:-1]
+
+            film.country = form.country.data
+            film.genre = form.genre.data
+            film.slogan = form.slogan.data
+            film.director = form.director.data
+            film.scenario = form.scenario.data
+            film.producer = form.producer.data
+            film.operator = form.operator.data
+            film.composer = form.composer.data
+            film.designer = form.designer.data
+            film.montage = form.montage.data
+            film.budget = form.budget.data
+            film.fees_in_the_world = form.fees_in_the_world.data
+            film.audience = form.audience.data
+            film.fees_in_russia = form.fees_in_russia.data
+            film.world_premiere = form.world_premiere.data
+            film.age = form.age.data
+            film.time = form.time.data
+            film.short_description = form.short_description.data
+            film.long_description = form.long_description.data
+
+            db_sess.add(film)
+            db_sess.commit()
+            return redirect('/')
     return render_template("add_film.html", title='Добавление фильма', form=form)
 
 
