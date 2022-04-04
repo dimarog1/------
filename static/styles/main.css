@@ -239,7 +239,7 @@ main .content .part_of_recomendations .films .film .description {
 }
 
 main .content .part_of_recomendations .films .film:hover {
-    height: 450px;
+    height: 460px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }

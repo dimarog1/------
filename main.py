@@ -1,8 +1,9 @@
-import datetime
 import base64
+import datetime
+import random
 
-from flask import Flask, render_template, request
-from werkzeug.utils import redirect, secure_filename
+from flask import Flask, render_template, make_response
+from werkzeug.utils import redirect
 
 from data import db_session
 from data.film import Film
@@ -16,26 +17,25 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
 )
 
 
-def readImage(image_name):
-    try:
-        with open(image_name, 'rb') as file:
-            image = file.read()
-        return image
-    except Exception as e:
-        print("ERROR!!", e)
-
-
 @app.route("/")
 def index():
     db_sess = db_session.create_session()
     films = db_sess.query(Film)
-    return render_template("index.html", title='W&F', films=films)
+    return render_template("index.html", title='W&F', films=films, css_file='styles/main.css')
+
+
+@app.route("/random_film")
+def random_film():
+    db_sess = db_session.create_session()
+    films = list(db_sess.query(Film))
+    film = random.choice(films)
+    return redirect(f'/films/{film.id}')
 
 
 @app.route("/search")
 def search():
     db_sess = db_session.create_session()
-    return render_template("search.html", title='search')
+    return render_template("search.html", title='search', css_file='styles/search.css')
 
 
 @app.route("/add_film", methods=['GET', 'POST'])
@@ -49,8 +49,9 @@ def add_film():
             film.title = form.title.data
             film.year = form.year.data
 
-            film.poster = str(base64.b64encode(form.poster.data.stream.read()))[2:-1]
+            film.poster = form.poster.data.stream.read()
 
+            film.trailer = form.trailer.data.stream.read()
             film.country = form.country.data
             film.genre = form.genre.data
             film.slogan = form.slogan.data
@@ -77,11 +78,31 @@ def add_film():
     return render_template("add_film.html", title='Добавление фильма', form=form)
 
 
-@app.route('/films/<int:id>')
+@app.route('/films/<int:id>', methods=['GET', 'POST'])
 def show_film(id):
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
-    return render_template('film.html', title=film.title, film=film)
+    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css')
+
+
+@app.route('/films/<int:id>/get_poster')
+def get_poster(id):
+    db_sess = db_session.create_session()
+    film = db_sess.query(Film).filter(Film.id == id).first()
+    image = film.poster
+    h = make_response(image)
+    h.headers['Content-Type'] = 'image/png'
+    return h
+
+
+@app.route('/films/<int:id>/get_trailer')
+def get_trailer(id):
+    db_sess = db_session.create_session()
+    film = db_sess.query(Film).filter(Film.id == id).first()
+    video = film.trailer
+    h = make_response(video)
+    h.headers['Content-Type'] = 'video/webm'
+    return h
 
 
 def main():

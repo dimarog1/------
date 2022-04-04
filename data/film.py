@@ -10,7 +10,8 @@ class Film(SqlAlchemyBase, SerializerMixin):
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
     title = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    poster = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    poster = sqlalchemy.Column(sqlalchemy.BLOB, nullable=False)
+    trailer = sqlalchemy.Column(sqlalchemy.BLOB, nullable=False)
     year = sqlalchemy.Column(sqlalchemy.Integer, nullable=False)
     country = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     genre = sqlalchemy.Column(sqlalchemy.String, nullable=False)

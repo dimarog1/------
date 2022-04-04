@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/film.css') }}" />
-    <title>{{ title }}</title>
-</head>
-
 {% extends "base.html" %}
 
 {% block content %}
 <div class="content">
     <div class="info">
         <div class="part1">
-            <img src="data:image/gif;base64,{{ film.poster }}" alt="Не удалось загрузить картинку" class="poster">
-            <iframe class="trailer" src="videos/Vegas.mp4" frameborder="0"
-                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope;"></iframe>
+            <img src="{{ url_for('get_poster', id=film.id) }}" alt="Не удалось загрузить картинку" class="poster">
+            <!--            <iframe class="trailer" src="{{ film.trailer }}" frameborder="0"-->
+            <!--                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+            <video class="trailer" autoplay controls
+                   src="{{ url_for('get_trailer', id=film.id) }}">
+            </video>
         </div>
         <div class="part2">
             <div class="title">
@@ -140,7 +130,7 @@
                 <hr>
                 <div class="part">
                     <div class="name">Возраст</div>
-                    <div class="stat">{{ film.year }}+</div>
+                    <div class="stat">{{ film.age }}+</div>
                 </div>
                 <hr>
                 <div class="part">

@@ -8,6 +8,7 @@ class FilmForm(FlaskForm):
     title = StringField('Название фильма', validators=[DataRequired()])
     year = IntegerField('Год выпуска', validators=[DataRequired()])
     poster = FileField('Постер', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg'])])
+    trailer = FileField('Трейлер (видео)', validators=[FileRequired(), FileAllowed(['mp4', 'webm'])])
     country = StringField('Страна')
     genre = StringField('Жанр', validators=[DataRequired()])
     slogan = StringField('Слоган')

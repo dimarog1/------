@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}" />
-    <title>{{ title }}</title>
-</head>
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -24,7 +11,7 @@
                 {% for film in films %}
                     <a href="/films/{{ film.id }}" class="film">
                         <div class="image">
-                            <img src="data:image/gif;base64,{{ film.poster }}" alt="Не удалось загрузить картинку">
+                            <img src="{{ url_for('get_poster', id=film.id) }}" alt="Не удалось загрузить картинку">
                         </div>
                         <div class="description">
                             <p> {{ film.short_description }} </p>

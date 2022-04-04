@@ -171,7 +171,7 @@ main .content .info .part1 .poster {
     border-radius: 10px;
 }
 
-main .content .info .part1 iframe {
+main .content .info .part1 video {
     height: 209px;
     width: 500px;
     margin-top: 20px;
@@ -531,7 +531,7 @@ footer .container .contacts .phone a:hover {
         margin-right: 20px;
         border-radius: 10px;
     }
-    main .content .info .part1 iframe {
+    main .content .info .part1 video {
         height: 180px;
         width: 430px;
         margin-top: 20px;
@@ -632,7 +632,7 @@ footer .container .contacts .phone a:hover {
         font-size: 25px;
         padding: 5px;
     }
-    main .content .info .part1 iframe {
+    main .content .info .part1 video {
         height: 150px;
         width: 360px;
     }
@@ -645,7 +645,7 @@ footer .container .contacts .phone a:hover {
     header nav .block {
         margin: 7px;
     }
-    main .content .info .part1 iframe {
+    main .content .info .part1 video {
         height: 120px;
         width: 289px;
     }
