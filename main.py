@@ -1,20 +1,30 @@
-import base64
 import datetime
 import random
 
-from flask import Flask, render_template, make_response
+from flask import Flask, render_template, make_response, request
 from werkzeug.utils import redirect
+from werkzeug.security import generate_password_hash
 
 from data import db_session
 from data.film import Film
+from data.user import Role, User
+
 from forms.film import FilmForm
+
+from forms.register import ExtendedRegisterForm, ExtendedLoginForm
+from flask_security import SQLAlchemySessionUserDatastore, Security, login_required
+from flask_security.utils import hash_password
+from data.db_session import db_sess, global_init
+
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
-    days=365
-)
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
+app.config['SECURITY_PASSWORD_SALT'] = 'pbkdf2:sha256:150000'
+
+user_datastore = SQLAlchemySessionUserDatastore(db_sess, User, Role)
+security = Security(app, user_datastore, login_form=ExtendedLoginForm)
 
 
 @app.route("/")
@@ -22,6 +32,12 @@ def index():
     db_sess = db_session.create_session()
     films = db_sess.query(Film)
     return render_template("index.html", title='W&F', films=films, css_file='styles/main.css')
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html')
 
 
 @app.route("/random_film")
@@ -105,8 +121,24 @@ def get_trailer(id):
     return h
 
 
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    form = ExtendedRegisterForm()
+    if request.method == 'POST':
+        if not user_datastore.find_user(email=request.form.get('email')):
+            user_datastore.create_user(
+                email=request.form.get('email'),
+                password=hash_password(request.form.get('password')),
+                roles='',
+            )
+            db_sess.commit()
+        return redirect('/')
+
+    return render_template('register.html', form=form)
+
+
 def main():
-    db_session.global_init("db/database.db")
+    global_init("db/database.db")
     app.run()
 
 
