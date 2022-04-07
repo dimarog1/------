@@ -134,7 +134,7 @@ def register():
             db_sess.commit()
         return redirect('/')
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, bootstrapp=True)
 
 
 def main():
