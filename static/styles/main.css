@@ -170,6 +170,7 @@ main {
     background-color: rgb(20, 20, 20);
     display: flex;
     justify-content: center;
+    min-height: 1000px;
 }
 
 main .content {
@@ -334,16 +335,15 @@ footer .container .contacts .phone a:hover {
     opacity: .7;
 }
 
-@media (max-width: 1600px) {
-    header form {
+@media (max-width: 1490px) {
+    header .logo {
         display: none;
+    }
+    header .part2 {
+        width: 60%;
     }
 }
-
 @media (max-width: 1386px) {
-    header .part2 form {
-        display: none;
-    }
     main .part_of_recomendations .films .film img {
         height: 300px;
     }
@@ -355,13 +355,41 @@ footer .container .contacts .phone a:hover {
         height: 400px;
     }
 }
-
-@media (max-width: 1166px) {
-    header .logo {
-        display: none;
+@media (max-width: 1250px) {
+    header nav .block {
+        margin: 20px;
+    }
+    header .part1 {
+        width: 70%;
+    }
+    header .part2 {
+        width: 30%;
+        justify-content: flex-end;
     }
 }
-
+@media (max-width: 1150px) {
+    header nav .block {
+        margin: 10px;
+    }
+    header .part1 {
+        width: 65%;
+    }
+    header nav .delimiter {
+        display: none;
+    }
+    header .part2 {
+        width: 35%;
+        justify-content: flex-end;
+    }
+    header .part2 form {
+        font-size: 15px;
+        width: 347px;
+        height: 43px;
+    }
+    header .part2 form input {
+        font-size: 20px;
+    }
+}
 @media (max-width: 994px) {
     header nav .block {
         margin: 20px;
