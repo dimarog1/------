@@ -2,54 +2,27 @@
 
 {% block content %}
 <div class="content">
-    <h2>Что мы нашли по запросу ...</h2>
+    <h2>Что мы нашли по запросу {{ search_info }}</h2>
     <div class="results">
-        <a href="film.html" class="result">
-            <div class="poster">
-                <img src="images/1.jpg" alt="#">
-            </div>
-            <div class="description">
-                <div class="title">
-                    <h3>Билет на Вегас</h3>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        4.0 / 10
+        {% for film in films %}
+            {% if search_info.lower() in film.title.lower() %}
+                <a href="/films/{{ film.id }}" class="result">
+                    <div class="poster">
+                        <img src="{{ url_for('get_poster', id=film.id) }}" alt="Не удалось загрузить картинку">
                     </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis explicabo fugiat, unde
-                    eligendi aspernatur debitis quibusdam tenetur officiis magnam esse id, assumenda atque iure,
-                    placeat nulla repudiandae iusto voluptatem fugit?
-                    Perspiciatis, dolore quisquam a modi, eius doloribus necessitatibus asperiores est numquam
-                    porro dolores. Qui molestiae libero ipsum quisquam voluptas consequatur dolorum, et
-                    perferendis sit aspernatur animi corrupti tenetur eveniet a.
-                    Nisi facere dicta, dolores, harum amet ex dolorum explicabo animi delectus alias quibusdam
-                    quaerat qui deleniti nesciunt quia eaque, at debitis cupiditate dolorem? Soluta dignissimos
-                    facere quam provident iure nulla.</p>
-            </div>
-        </a>
-        <a href="film.html" class="result">
-            <div class="poster">
-                <img src="images/1.jpg" alt="#">
-            </div>
-            <div class="description">
-                <div class="title">
-                    <h3>Билет на Вегас</h3>
-                    <div class="stars">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        4.0 / 10
+                    <div class="description">
+                        <div class="title">
+                            <h3>{{ film.title }}</h3>
+                            <div class="stars">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                4.0 / 10
+                            </div>
+                        </div>
+                        <p>{{ film.long_description }}</p>
                     </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis explicabo fugiat, unde
-                    eligendi aspernatur debitis quibusdam tenetur officiis magnam esse id, assumenda atque iure,
-                    placeat nulla repudiandae iusto voluptatem fugit?
-                    Perspiciatis, dolore quisquam a modi, eius doloribus necessitatibus asperiores est numquam
-                    porro dolores. Qui molestiae libero ipsum quisquam voluptas consequatur dolorum, et
-                    perferendis sit aspernatur animi corrupti tenetur eveniet a.
-                    Nisi facere dicta, dolores, harum amet ex dolorum explicabo animi delectus alias quibusdam
-                    quaerat qui deleniti nesciunt quia eaque, at debitis cupiditate dolorem? Soluta dignissimos
-                    facere quam provident iure nulla.</p>
-            </div>
-        </a>
+                </a>
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

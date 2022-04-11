@@ -147,6 +147,7 @@ main {
     background-color: rgb(20, 20, 20);
     display: flex;
     justify-content: center;
+    min-height: 930px;
 }
 
 main .content {
@@ -178,7 +179,7 @@ main .results .result .poster {
     margin-right: 30px;
 }
 
-main .results .result img {
+main .results .result .poster img {
     height: 200px;
     border-radius: 10px;
 }
@@ -297,33 +298,49 @@ footer .container .contacts .phone a:hover {
     opacity: .7;
 }
 
-@media (min-width: 1651px) {
-    main {
-        height: 930px;
-    }
-}
-
-@media (max-width: 1600px) {
-    header form {
-        display: none;
-    }
-}
-
-@media (max-width: 1386px) {
-    header .part2 form {
-        display: none;
-    }
-}
-
-@media (max-width: 1169px) {
+@media (max-width: 1490px) {
     header .logo {
         display: none;
     }
+    header .part2 {
+        width: 60%;
+    }
 }
 
-@media (max-width: 994px) {
+@media (max-width: 1250px) {
     header nav .block {
         margin: 20px;
+    }
+    header .part1 {
+        width: 70%;
+    }
+    header .part2 {
+        width: 30%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 1150px) {
+    header nav .block {
+        margin: 10px;
+    }
+    header .part1 {
+        width: 65%;
+    }
+    header nav .delimiter {
+        display: none;
+    }
+    header .part2 {
+        width: 35%;
+        justify-content: flex-end;
+    }
+    header .part2 form {
+        font-size: 15px;
+        width: 347px;
+        height: 43px;
+    }
+    header .part2 form input {
+        font-size: 20px;
     }
 }
 
@@ -334,9 +351,6 @@ footer .container .contacts .phone a:hover {
     }
     header .part1 nav {
         font-size: 20px;
-    }
-    header nav .delimiter {
-        display: none;
     }
     main .content {
         margin-top: 60px;
