@@ -4,7 +4,9 @@
 <div class="content">
     <div class="info">
         <div class="part1">
-            <img src="{{ url_for('get_poster', id=film.id) }}" alt="Не удалось загрузить картинку" class="poster">
+            <div class="poster">
+                <img src="{{ url_for('get_poster', id=film.id) }}" alt="Не удалось загрузить картинку">
+            </div>
             <video class="trailer" autoplay controls
                    src="{{ url_for('get_trailer', id=film.id) }}">
             </video>
@@ -14,7 +16,7 @@
                 <h2>{{ film.title }}</h2>
                 <div class="stars">
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    4.0 / 10
+                    {{ film.rating }} / 10
                 </div>
             </div>
             <span class="rating">{{ film.age }}+</span>
@@ -147,10 +149,11 @@
     <div class="galery">
         <h2>Кадры из фильма</h2>
         <div class="frames">
-            <img src="frames/1.jpg" alt="">
-            <img src="frames/2.jpg" alt="">
-            <img src="frames/3.jpg" alt="">
-            <img src="frames/4.jpg" alt="">
+            {% for frame in range(1, 4) %}
+                <div class="frame">
+                    <img src="{{ url_for('get_frame', id=film.id, frame=frame) }}" alt="Не удалось загрузить картинку">
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="reviews">

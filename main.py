@@ -72,7 +72,11 @@ def add_film():
         if form.poster:
             film.title = form.title.data
             film.year = form.year.data
+            film.rating = form.rating.data
             film.poster = form.poster.data.stream.read()
+            film.frame_1 = form.frame_1.data.stream.read()
+            film.frame_2 = form.frame_2.data.stream.read()
+            film.frame_3 = form.frame_3.data.stream.read()
             film.trailer = form.trailer.data.stream.read()
             film.country = form.country.data
             film.genre = form.genre.data
@@ -97,7 +101,7 @@ def add_film():
             db_sess.add(film)
             db_sess.commit()
             return redirect('/')
-    return render_template("add_film.html", title='Добавление фильма', form=form, search_form=search_form)
+    return render_template("add_film.html", title='Добавление фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
 
 
 @app.route('/films/<int:id>', methods=['GET', 'POST'])
@@ -118,6 +122,21 @@ def get_poster(id):
     film = db_sess.query(Film).filter(Film.id == id).first()
     image = film.poster
     h = make_response(image)
+    h.headers['Content-Type'] = 'image/png'
+    return h
+
+
+@app.route('/films/<int:id>/get_frame/<int:frame>')
+def get_frame(id, frame):
+    db_sess = db_session.create_session()
+    film = db_sess.query(Film).filter(Film.id == id).first()
+    vals = {
+        'frame_1': film.frame_1,
+        'frame_2': film.frame_2,
+        'frame_3': film.frame_3
+    }
+    res_frame = vals[f'frame_{frame}']
+    h = make_response(res_frame)
     h.headers['Content-Type'] = 'image/png'
     return h
 

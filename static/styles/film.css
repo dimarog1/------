@@ -166,8 +166,9 @@ main .content .info .part1 {
     width: 35%;
 }
 
-main .content .info .part1 .poster {
+main .content .info .part1 .poster img {
     width: 500px;
+    height: 714px;
     border-radius: 10px;
 }
 
@@ -277,9 +278,10 @@ main .content .galery .frames {
     flex-wrap: wrap;
 }
 
-main .content .galery .frames img {
+main .content .galery .frames .frame img {
     height: auto;
-    width: 370px;
+    width: 400px;
+    height: 225px;
     margin: 0 20px 20px 0;
     border-radius: 10px;
 }
