@@ -1,13 +1,17 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms import StringField, IntegerField, SubmitField
+from wtforms import StringField, IntegerField, SubmitField, FloatField
 from wtforms.validators import DataRequired
 
 
 class FilmForm(FlaskForm):
     title = StringField('Название фильма', validators=[DataRequired()])
+    rating = FloatField('Рейтинг ( * / 10 )', validators=[DataRequired()])
     year = IntegerField('Год выпуска', validators=[DataRequired()])
     poster = FileField('Постер', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg'])])
+    frame_1 = FileField('Кадр из фильма №1', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg'])])
+    frame_2 = FileField('Кадр из фильма №2', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg'])])
+    frame_3 = FileField('Кадр из фильма №3', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg'])])
     trailer = FileField('Трейлер (видео)', validators=[FileRequired(), FileAllowed(['mp4', 'webm'])])
     country = StringField('Страна')
     genre = StringField('Жанр', validators=[DataRequired()])

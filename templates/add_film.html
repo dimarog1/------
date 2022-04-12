@@ -1,217 +1,367 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Добавление фильма</h1>
-<form method="POST" action="" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.title.label }}<br>
-        {{ form.title(class="form-control") }}<br>
-        {% for error in form.title.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.year.label }}<br>
-        {{ form.year(class="form-control") }}<br>
-        {% for error in form.year.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.poster.label }}<br>
-        {{ form.poster(class="form-control-file") }}<br>
-        {% for error in form.poster.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.trailer.label }}<br>
-        {{ form.trailer(class="form-control") }}<br>
-        {% for error in form.trailer.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.country.label }}<br>
-        {{ form.country(class="form-control") }}<br>
-        {% for error in form.country.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.genre.label }}<br>
-        {{ form.genre(class="form-control") }}<br>
-        {% for error in form.genre.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.slogan.label }}<br>
-        {{ form.slogan(class="form-control") }}<br>
-        {% for error in form.slogan.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.director.label }}<br>
-        {{ form.director(class="form-control") }}<br>
-        {% for error in form.director.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.scenario.label }}<br>
-        {{ form.scenario(class="form-control") }}<br>
-        {% for error in form.scenario.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.producer.label }}<br>
-        {{ form.producer(class="form-control") }}<br>
-        {% for error in form.producer.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.operator.label }}<br>
-        {{ form.operator(class="form-control") }}<br>
-        {% for error in form.operator.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.composer.label }}<br>
-        {{ form.composer(class="form-control") }}<br>
-        {% for error in form.composer.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.designer.label }}<br>
-        {{ form.designer(class="form-control") }}<br>
-        {% for error in form.designer.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.montage.label }}<br>
-        {{ form.montage(class="form-control") }}<br>
-        {% for error in form.montage.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.budget.label }}<br>
-        {{ form.budget(class="form-control") }}<br>
-        {% for error in form.budget.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.fees_in_the_world.label }}<br>
-        {{ form.fees_in_the_world(class="form-control") }}<br>
-        {% for error in form.fees_in_the_world.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.audience.label }}<br>
-        {{ form.audience(class="form-control") }}<br>
-        {% for error in form.audience.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.fees_in_russia.label }}<br>
-        {{ form.fees_in_russia(class="form-control") }}<br>
-        {% for error in form.fees_in_russia.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.world_premiere.label }}<br>
-        {{ form.world_premiere(class="form-control") }}<br>
-        {% for error in form.world_premiere.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.age.label }}<br>
-        {{ form.age(class="form-control") }}<br>
-        {% for error in form.age.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.time.label }}<br>
-        {{ form.time(class="form-control") }}<br>
-        {% for error in form.time.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.short_description.label }}<br>
-        {{ form.short_description(class="form-control") }}<br>
-        {% for error in form.short_description.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.long_description.label }}<br>
-        {{ form.long_description(class="form-control") }}<br>
-        {% for error in form.long_description.errors %}
-            <p content="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    {{ form.submit(type="submit", class="btn btn-primary") }}
-    {{ message }}
-</form>
+<div class="content">
+    <div class="heading">
+        <h1>Добавление фильма</h1>
+    </div>
+    <div class="form_for_film">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.title.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.title(class="form-control") }}
+                </div>
+                {% for error in form.poster.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.rating.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.rating(class="form-control") }}
+                </div>
+                {% for error in form.rating.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.year.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.year(class="form-control") }}
+                </div>
+                {% for error in form.year.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="file_field">
+                <div class="info_for_input">
+                    {{ form.poster.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.poster() }}
+                </div>
+                {% for error in form.poster.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="file_field">
+                <div class="info_for_input">
+                    {{ form.frame_1.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.frame_1() }}
+                </div>
+                {% for error in form.frame_1.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="file_field">
+                <div class="info_for_input">
+                    {{ form.frame_2.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.frame_2() }}
+                </div>
+                {% for error in form.frame_2.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="file_field">
+                <div class="info_for_input">
+                    {{ form.frame_3.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.frame_3() }}
+                </div>
+                {% for error in form.frame_3.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="file_field">
+                <div class="info_for_input">
+                    {{ form.trailer.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.trailer() }}
+                </div>
+                {% for error in form.trailer.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.country.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.country(class="form-control") }}
+                </div>
+                {% for error in form.country.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.genre.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.genre(class="form-control") }}
+                </div>
+                {% for error in form.genre.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.slogan.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.slogan(class="form-control") }}
+                </div>
+                {% for error in form.slogan.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.director.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.director(class="form-control") }}
+                </div>
+                {% for error in form.director.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.scenario.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.scenario(class="form-control") }}
+                </div>
+                {% for error in form.scenario.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.producer.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.producer(class="form-control") }}
+                </div>
+                {% for error in form.producer.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.operator.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.operator(class="form-control") }}
+                </div>
+                {% for error in form.operator.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.composer.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.composer(class="form-control") }}
+                </div>
+                {% for error in form.composer.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.designer.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.designer(class="form-control") }}
+                </div>
+                {% for error in form.designer.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.montage.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.montage(class="form-control") }}
+                </div>
+                {% for error in form.montage.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.budget.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.budget(class="form-control") }}
+                </div>
+                {% for error in form.budget.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.fees_in_the_world.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.fees_in_the_world(class="form-control") }}
+                </div>
+                {% for error in form.fees_in_the_world.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.audience.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.audience(class="form-control") }}
+                </div>
+                {% for error in form.audience.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.fees_in_russia.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.fees_in_russia(class="form-control") }}
+                </div>
+                {% for error in form.fees_in_russia.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.world_premiere.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.world_premiere(class="form-control") }}
+                </div>
+                {% for error in form.world_premiere.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.age.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.age(class="form-control") }}
+                </div>
+                {% for error in form.age.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.time.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.time(class="form-control") }}
+                </div>
+                {% for error in form.time.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.short_description.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.short_description(class="form-control") }}
+                </div>
+                {% for error in form.short_description.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="string_field">
+                <div class="info_for_input">
+                    {{ form.long_description.label }}
+                </div>
+                <div class="input_form">
+                    {{ form.long_description(class="form-control") }}
+                </div>
+                {% for error in form.long_description.errors %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+            {{ form.submit(type="submit", class="submit") }}
+            {{ message }}
+        </form>
+    </div>
+</div>
 {% endblock %}
