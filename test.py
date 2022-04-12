@@ -1,7 +1,3 @@
-import base64
+from requests import delete
 
-
-with open('test.txt', 'r') as doc:
-    val = doc.read()
-
-print(base64.b64encode(b'123'))
+print(delete('http://localhost:5000/api/review/1'))

@@ -3,7 +3,6 @@ import random
 
 from flask import Flask, render_template, make_response, request
 from werkzeug.utils import redirect
-from werkzeug.security import generate_password_hash
 
 from data import db_session
 from data.film import Film
@@ -14,10 +13,16 @@ from forms.film import FilmForm
 from forms.register import ExtendedRegisterForm, ExtendedLoginForm
 from flask_security import SQLAlchemySessionUserDatastore, Security, login_required
 from flask_security.utils import hash_password
+from flask_security.forms import current_user
 from data.db_session import db_sess, global_init
+
+from flask_restful import Api
+from rest_api import review_resources
+from rest_api.review_resources import ReviewResource
 
 
 app = Flask(__name__)
+api = Api(app)
 
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
@@ -98,7 +103,9 @@ def add_film():
 def show_film(id):
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
-    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css')
+    #TODO сделать нормальный html
+    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css',
+                           is_authenticated=current_user.is_authenticated)
 
 
 @app.route('/films/<int:id>/get_poster')
@@ -134,10 +141,13 @@ def register():
             db_sess.commit()
         return redirect('/')
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, bootstrapp=True)
 
 
 def main():
+    api.add_resource(review_resources.ReviewListResource, '/api/review')
+    api.add_resource(review_resources.ReviewResource, '/api/review/<int:review_id>')
+
     global_init("db/database.db")
     app.run()
 
