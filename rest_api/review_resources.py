@@ -25,8 +25,7 @@ class ReviewResource(Resource):
         abort_if_review_not_found(review_id)
         session = db_session.create_session()
         review = session.query(Review).get(review_id)
-        return jsonify({'review': review.to_dict(
-            only=('user', 'film', 'text', 'mark'))})
+        return jsonify({'review': review.to_dict()})
 
     def delete(self, review_id):
         abort_if_review_not_found(review_id)
@@ -41,8 +40,7 @@ class ReviewListResource(Resource):
     def get(self):
         session = db_session.create_session()
         review = session.query(Review).all()
-        return jsonify({'review': [item.to_dict(
-            only=('user', 'film', 'text', 'mark')) for item in review]})
+        return jsonify({'review': [item.to_dict() for item in review]})
 
     def post(self):
         args = parser.parse_args()

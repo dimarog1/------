@@ -17,7 +17,7 @@ from flask_security.forms import current_user
 from data.db_session import db_sess, global_init
 
 from flask_restful import Api
-from rest_api import review_resources
+from rest_api import review_resources, film_resources
 
 
 app = Flask(__name__)
@@ -148,6 +148,9 @@ def register():
 def main():
     api.add_resource(review_resources.ReviewListResource, '/api/review')
     api.add_resource(review_resources.ReviewResource, '/api/review/<int:review_id>')
+    api.add_resource(film_resources.FilmListResource, '/api/films')
+    api.add_resource(film_resources.FilmResource, '/api/films/<int:film_id>')
+
     global_init("db/database.db")
     app.run()
 
