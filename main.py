@@ -2,6 +2,7 @@ import datetime
 import random
 
 from flask import Flask, render_template, make_response, request
+from flask_security.utils import hash_password
 from werkzeug.utils import redirect
 
 from data import db_session
@@ -11,14 +12,12 @@ from data.user import Role, User
 from forms.film import FilmForm
 
 from forms.register import ExtendedRegisterForm, ExtendedLoginForm
-from flask_security import SQLAlchemySessionUserDatastore, Security, login_required
-from flask_security.utils import hash_password
+from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
 from flask_security.forms import current_user
 from data.db_session import db_sess, global_init
 
 from flask_restful import Api
 from rest_api import review_resources
-from rest_api.review_resources import ReviewResource
 
 
 app = Flask(__name__)
@@ -36,7 +35,8 @@ security = Security(app, user_datastore, login_form=ExtendedLoginForm)
 def index():
     db_sess = db_session.create_session()
     films = db_sess.query(Film)
-    return render_template("index.html", title='W&F', films=films, css_file='styles/main.css')
+    return render_template("index.html", title='W&F', films=films, is_admin=current_user.has_role('admin'),
+                           css_file='styles/main.css')
 
 
 @app.route('/profile')
@@ -133,11 +133,12 @@ def register():
     form = ExtendedRegisterForm()
     if request.method == 'POST':
         if not user_datastore.find_user(email=request.form.get('email')):
-            user_datastore.create_user(
+            user = user_datastore.create_user(
                 email=request.form.get('email'),
                 password=hash_password(request.form.get('password')),
-                roles='',
             )
+            default_role = user_datastore.find_role('user')
+            user_datastore.add_role_to_user(user, default_role)
             db_sess.commit()
         return redirect('/')
 
@@ -147,7 +148,6 @@ def register():
 def main():
     api.add_resource(review_resources.ReviewListResource, '/api/review')
     api.add_resource(review_resources.ReviewResource, '/api/review/<int:review_id>')
-
     global_init("db/database.db")
     app.run()
 
