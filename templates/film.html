@@ -7,7 +7,7 @@
             <div class="poster">
                 <img src="{{ url_for('get_poster', id=film.id) }}" alt="Не удалось загрузить картинку">
             </div>
-            <video class="trailer" autoplay controls src="{{ url_for('get_trailer', id=film.id) }}">
+            <video class="trailer" controls src="{{ url_for('get_trailer', id=film.id) }}">
             </video>
         </div>
         <div class="part2">
@@ -140,6 +140,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="admin_buttons">
+        <a href="/edit_film/{{ film.id }}" class="edit">Изменить</a>
+        <a href="/delete_film/{{ film.id }}" class="delete">Удалить</a>
     </div>
     <div class="description">
         <h2>Описание</h2>

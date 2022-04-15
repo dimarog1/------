@@ -244,6 +244,32 @@ main .content .info .part2 .stats hr {
     opacity: .2;
 }
 
+main .content .admin_buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 30px;
+}
+
+main .content .admin_buttons .edit {
+    padding: 10px;
+    background-color: burlywood;
+    color: black;
+    display: block;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+main .content .admin_buttons .delete {
+    padding: 10px;
+    background-color: #c73401;
+    color: black;
+    display: block;
+    border-radius: 10px;
+    margin: 10px;
+}
+
 main .content .description {
     margin-top: 20px;
     color: wheat;
@@ -384,6 +410,7 @@ main .content .reviews .review {
     border-radius: 20px;
     width: 50%;
     font-size: 20px;
+    margin: 20px 0;
 }
 
 main .content .reviews .review .head {

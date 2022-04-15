@@ -1,7 +1,6 @@
-import base64
+from sys import stdin
 
+a = [i.strip() for i in stdin]
 
-with open('test.txt', 'r') as doc:
-    val = doc.read()
-
-print(base64.b64encode(b'123'))
+for i in a:
+    print(f'{i.split(" = ")[1]} = {i.split(" = ")[0]}')
