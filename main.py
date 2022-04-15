@@ -12,6 +12,7 @@ from data.user import Role, User
 
 from forms.film import FilmForm
 from forms.search import SearchForm
+from forms.review import ReviewForm
 
 from forms.register import ExtendedRegisterForm, ExtendedLoginForm
 from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
@@ -44,19 +45,18 @@ def create_search_form():
 def index():
     db_sess = db_session.create_session()
     films = db_sess.query(Film)
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_input = form.search_info.data
+        return redirect(f"/search/{search_input}")
     return render_template("index.html", title='W&F', films=films, is_admin=current_user.has_role('admin'),
-                           css_file='styles/main.css')
+                           css_file='styles/main.css', search_form=form)
 
 
 @app.route('/profile')
 @login_required
 def profile():
     return render_template('profile.html')
-    form = SearchForm()
-    if form.validate_on_submit():
-        search_input = form.search_info.data
-        return redirect(f"/search/{search_input}")
-    return render_template("index.html", title='W&F', films=films, css_file='styles/main.css', search_form=form)
 
 
 @app.route("/random_film")
@@ -134,10 +134,12 @@ def show_film(id):
         search_input = search_form.search_info.data
         return redirect(f"/search/{search_input}")
 
+    review_form = ReviewForm()
+
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
     return render_template('film.html', title=film.title, film=film, css_file='styles/film.css', search_form=search_form,
-                           is_authenticated=current_user.is_authenticated)
+                           review_form=review_form, is_authenticated=current_user.is_authenticated)
 
 
 @app.route('/films/<int:id>/get_poster')

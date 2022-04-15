@@ -286,9 +286,86 @@ main .content .galery .frames .frame img {
     border-radius: 10px;
 }
 
+main .content .add_review {
+    color: wheat;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+main .content .add_review h2 {
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+main .content .add_review form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+.rating-area {
+	overflow: hidden;
+	width: 150px;
+}
+.rating-area:not(:checked) > input {
+	display: none;
+}
+.rating-area:not(:checked) > label {
+	float: right;
+	width: 30px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 32px;
+	line-height: 32px;
+	color: lightgrey;
+	text-shadow: 1px 1px #bbb;
+}
+.rating-area:not(:checked) > label:before {
+	content: '★';
+}
+.rating-area > input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px #c60;
+}
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+	color: gold;
+}
+.rating-area > input:checked + label:hover,
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px goldenrod;
+}
+.rate-area > label:active {
+	position: relative;
+}
+
+main .content .add_review form textarea {
+    margin: 10px 0;
+    width: 50%;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+main .content .add_review form .button {
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: burlywood;
+    padding: 5px;
+    width: 20%;
+    cursor: pointer;
+}
+
 main .content .reviews {
     color: wheat;
-    margin: 70px 0;
+    margin: 50px 0;
 }
 
 main .content .reviews h2 {
@@ -693,6 +770,45 @@ footer .container .contacts .phone a:hover {
     }
 }
 
+@media (max-width: 409px) {
+    header .part1 nav {
+        font-size: 13px;
+    }
+    main .content .info .part2 .title .stars {
+        display: none;
+    }
+    main .content .reviews .review .head .stars {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 365px) {
+    header .part1 nav {
+        font-size: 11px;
+    }
+    footer .container .social a i {
+        padding: 0px;
+        margin: 15px;
+    }
+    main .content .description h2 {
+        font-size: 25px;
+    }
+    main .content .description p {
+        font-size: 15px;
+    }
+    main .content .galery h2 {
+        font-size: 25px;
+    }
+    main .content .reviews h2 {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 318px) {
+    header .part1 nav {
+        font-size: 9px;
+    }
+}
 @media (max-width: 409px) {
     header .part1 nav {
         font-size: 13px;

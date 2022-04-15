@@ -7,8 +7,7 @@
             <div class="poster">
                 <img src="{{ url_for('get_poster', id=film.id) }}" alt="Не удалось загрузить картинку">
             </div>
-            <video class="trailer" autoplay controls
-                   src="{{ url_for('get_trailer', id=film.id) }}">
+            <video class="trailer" autoplay controls src="{{ url_for('get_trailer', id=film.id) }}">
             </video>
         </div>
         <div class="part2">
@@ -150,23 +149,33 @@
         <h2>Кадры из фильма</h2>
         <div class="frames">
             {% for frame in range(1, 4) %}
-                <div class="frame">
-                    <img src="{{ url_for('get_frame', id=film.id, frame=frame) }}" alt="Не удалось загрузить картинку">
-                </div>
+            <div class="frame">
+                <img src="{{ url_for('get_frame', id=film.id, frame=frame) }}" alt="Не удалось загрузить картинку">
+            </div>
             {% endfor %}
         </div>
     </div>
+    <div class="add_review">
+        <h2>Добавить отзыв</h2>
+        <div class="rating-area">
+            <input type="radio" id="mark_5" name="rating" value="5">
+            {{ review_form.mark_5.label }}
+            <input type="radio" id="mark_4" name="rating" value="4">
+            {{ review_form.mark_4.label }}
+            <input type="radio" id="mark_3" name="rating" value="3">
+            {{ review_form.mark_3.label }}
+            <input type="radio" id="mark_2" name="rating" value="2">
+            {{ review_form.mark_2.label }}
+            <input type="radio" id="mark_1" name="rating" value="1">
+            {{ review_form.mark_1.label }}
+        </div>
+        <form action="">
+            {{ review_form.text(placeholder="Введите текст") }}
+            {{ review_form.submit(class="button") }}
+        </form>
+    </div>
     <div class="reviews">
         <h2>Отзывы</h2>
-
-        {% if is_authenticated %}
-            <div class="input-review">
-                <textarea class="textarea" maxlength="20000"
-                          placeholder="Напишите отзыв как можно подробнее" rows="5"></textarea>
-                <input type="submit" value="Опубликовать">
-            </div>
-        {% endif %}
-
         <div class="review">
             <div class="head">
                 <div class="profile">
@@ -196,14 +205,14 @@
                 </p>
             </div>
             <div class="comments">
-                        <span class="likes">
-                            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                            100
-                        </span>
+                <span class="likes">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                    100
+                </span>
                 <span class="dislikes">
-                            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                            10
-                        </span>
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                    10
+                </span>
             </div>
         </div>
     </div>
