@@ -22,6 +22,8 @@ from data.db_session import db_sess, global_init
 from flask_restful import Api
 from rest_api import review_resources, film_resources
 
+from requests import post
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -136,10 +138,18 @@ def show_film(id):
         return redirect(f"/search/{search_input}")
 
     review_form = ReviewForm()
-    print(review_form.data)
-    if review_form.validate_on_submit():
-        print('Оставлен отзыв')
-        return redirect('/')
+    if review_form.is_submitted():
+        data = {
+            'user': current_user.id,
+            'film': id,
+            'text': review_form.text.data,
+            'mark': int(review_form.mark.data),
+        }
+
+        # TODO
+        post('http://localhost:5000/api/review', data=data)
+
+        return redirect(f'/films/{id}')
 
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
