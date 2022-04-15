@@ -136,6 +136,10 @@ def show_film(id):
         return redirect(f"/search/{search_input}")
 
     review_form = ReviewForm()
+    print(review_form.data)
+    if review_form.validate_on_submit():
+        print('Оставлен отзыв')
+        return redirect('/')
 
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()

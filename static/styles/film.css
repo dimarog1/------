@@ -307,7 +307,7 @@ main .content .add_review form {
 
 .rating-area {
 	overflow: hidden;
-	width: 150px;
+	width: 300px;
 }
 .rating-area:not(:checked) > input {
 	display: none;

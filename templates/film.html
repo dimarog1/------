@@ -157,19 +157,14 @@
     </div>
     <div class="add_review">
         <h2>Добавить отзыв</h2>
-        <div class="rating-area">
-            <input type="radio" id="mark_5" name="rating" value="5">
-            {{ review_form.mark_5.label }}
-            <input type="radio" id="mark_4" name="rating" value="4">
-            {{ review_form.mark_4.label }}
-            <input type="radio" id="mark_3" name="rating" value="3">
-            {{ review_form.mark_3.label }}
-            <input type="radio" id="mark_2" name="rating" value="2">
-            {{ review_form.mark_2.label }}
-            <input type="radio" id="mark_1" name="rating" value="1">
-            {{ review_form.mark_1.label }}
-        </div>
-        <form action="">
+        <form method="POST" action="">
+            <div class="rating-area">
+                {% for mark_field in review_form.mark %}
+                    {{ mark_field(value=(11 - loop.index)) }}
+                    {{ mark_field.label }}
+                {% endfor %}
+            </div>
+
             {{ review_form.text(placeholder="Введите текст") }}
             {{ review_form.submit(class="button") }}
         </form>
