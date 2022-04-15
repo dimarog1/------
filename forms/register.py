@@ -4,6 +4,7 @@ from flask_security.forms import SubmitField, PasswordField, Required, StringFie
 
 class ExtendedRegisterForm(RegisterForm):
     email = StringField('Почта', validators=[Required()])
+    nickname = StringField('Имя пользователя', validators=[Required()])
     password = PasswordField('Пароль', validators=[Required()])
     password_confirm = PasswordField('Подтвердите пароль', validators=[Required()])
     submit = SubmitField('Зарегистрироваться')

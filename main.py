@@ -20,9 +20,9 @@ from flask_security.forms import current_user
 from data.db_session import db_sess, global_init
 
 from flask_restful import Api
-from rest_api import review_resources, film_resources
+from rest_api import review_resources, film_resources, user_resources
 
-from requests import post
+from requests import get, post
 
 
 app = Flask(__name__)
@@ -151,9 +151,25 @@ def show_film(id):
 
         return redirect(f'/films/{id}')
 
+    review_data = get('http://localhost:5000/api/review').json()['review']
+    user_data = get('http://localhost:5000/api/users').json()['user']
+    id_nickname = dict()
+    for data_elem in user_data:
+        id_nickname[data_elem['id']] = data_elem['nickname']
+    review_info = []
+    for data_elem in review_data:
+        if data_elem['film'] == 1:
+            data_block = {
+                'username': id_nickname[data_elem['user']],
+                'mark': str(data_elem['mark']),
+                'text': data_elem['text'],
+            }
+            review_info.append(data_block)
+
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
-    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css', search_form=search_form,
+    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css',
+                           search_form=search_form, review_info=review_info,
                            review_form=review_form, is_authenticated=current_user.is_authenticated)
 
 
@@ -205,6 +221,7 @@ def register():
             user = user_datastore.create_user(
                 email=request.form.get('email'),
                 password=hash_password(request.form.get('password')),
+                nickname=request.form.get('nickname')
             )
             default_role = user_datastore.find_role('user')
             user_datastore.add_role_to_user(user, default_role)
@@ -219,6 +236,8 @@ def main():
     api.add_resource(review_resources.ReviewResource, '/api/review/<int:review_id>')
     api.add_resource(film_resources.FilmListResource, '/api/films')
     api.add_resource(film_resources.FilmResource, '/api/films/<int:film_id>')
+    api.add_resource(user_resources.UserListResource, '/api/users')
+    api.add_resource(user_resources.UserResource, '/api/users/<int:user_id>')
 
     global_init("db/database.db")
     app.run()

@@ -14,6 +14,15 @@
             </p>
         {% endfor %}
     </p>
+        <p>
+        {{ form.nickname.label }}<br>
+        {{ form.nickname(class="form-control", type="name") }}<br>
+        {% for error in form.nickname.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
     <p>
         {{ form.password.label }}<br>
         {{ form.password(class="form-control", type="password") }}<br>

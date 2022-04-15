@@ -4,6 +4,7 @@ from sqlalchemy import orm, Integer, ForeignKey
 from .db_session import SqlAlchemyBase
 from flask_security import RoleMixin, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy import Column
 
@@ -23,11 +24,12 @@ class Role(SqlAlchemyBase, RoleMixin):
     description = Column(sqlalchemy.String(255))
 
 
-class User(SqlAlchemyBase, UserMixin):
+class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'user'
 
     id = Column(sqlalchemy.Integer, primary_key=True)
     email = Column(sqlalchemy.String(255), unique=True)
+    nickname = Column(sqlalchemy.String(255))
     password = Column(sqlalchemy.String(255))
     active = Column(sqlalchemy.Boolean())
     confirmed_at = Column(sqlalchemy.DateTime())
