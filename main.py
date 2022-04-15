@@ -76,7 +76,8 @@ def search(search_info):
 
     db_sess = db_session.create_session()
     films = db_sess.query(Film).all()
-    return render_template("search.html", title='search', css_file='styles/search.css', search_form=search_form, films=films, search_info=search_info)
+    return render_template("search.html", title='search', css_file='styles/search.css',
+                           search_form=search_form, films=films, search_info=search_info)
 
 
 @app.route("/add_film", methods=['GET', 'POST'])
@@ -179,6 +180,11 @@ def get_trailer(id):
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
+
     form = ExtendedRegisterForm()
     if request.method == 'POST':
         if not user_datastore.find_user(email=request.form.get('email')):
@@ -191,7 +197,7 @@ def register():
             db_sess.commit()
         return redirect('/')
 
-    return render_template('register.html', form=form, bootstrapp=True)
+    return render_template('register.html', form=form, search_form=search_form, bootstrapp=True)
 
 
 def main():
