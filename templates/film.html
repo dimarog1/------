@@ -155,20 +155,22 @@
             {% endfor %}
         </div>
     </div>
-    <div class="add_review">
-        <h2>Добавить отзыв</h2>
-        <form method="POST" action="">
-            <div class="rating-area">
-                {% for mark_field in review_form.mark %}
-                    {{ mark_field(value=(11 - loop.index)) }}
-                    {{ mark_field.label }}
-                {% endfor %}
-            </div>
+    {% if is_authenticated %}
+        <div class="add_review">
+            <h2>Добавить отзыв</h2>
+            <form method="POST" action="">
+                <div class="rating-area">
+                    {% for mark_field in review_form.mark %}
+                        {{ mark_field(value=(11 - loop.index)) }}
+                        {{ mark_field.label }}
+                    {% endfor %}
+                </div>
 
-            {{ review_form.text(placeholder="Введите текст") }}
-            {{ review_form.submit(class="button") }}
-        </form>
-    </div>
+                {{ review_form.text(placeholder="Введите текст") }}
+                {{ review_form.submit(class="button") }}
+            </form>
+        </div>
+    {% endif %}
     <div class="reviews">
         <h2>Отзывы</h2>
         {% for element in review_info %}

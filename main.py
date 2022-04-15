@@ -43,6 +43,17 @@ def create_search_form():
         return redirect(f"/search/{search_input}")
 
 
+@app.context_processor
+def login_context():
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_input = form.search_info.data
+        return redirect(f"/search/{search_input}")
+    return {
+        'search_form': form,
+    }
+
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     db_sess = db_session.create_session()
