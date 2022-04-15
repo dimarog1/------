@@ -39,16 +39,17 @@ def create_search_form():
     if form.validate_on_submit():
         search_input = form.search_info.data
         return redirect(f"/search/{search_input}")
-    return form
 
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
     db_sess = db_session.create_session()
     films = db_sess.query(Film)
-    form = create_search_form()
-    return render_template("index.html", title='W&F', films=films,
-                           is_admin=current_user.has_role('admin'),
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_input = form.search_info.data
+        return redirect(f"/search/{search_input}")
+    return render_template("index.html", title='W&F', films=films, is_admin=current_user.has_role('admin'),
                            css_file='styles/main.css', search_form=form)
 
 
@@ -68,7 +69,10 @@ def random_film():
 
 @app.route("/search/<string:search_info>")
 def search(search_info):
-    search_form = create_search_form()
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
 
     db_sess = db_session.create_session()
     films = db_sess.query(Film).all()
@@ -77,7 +81,10 @@ def search(search_info):
 
 @app.route("/add_film", methods=['GET', 'POST'])
 def add_film():
-    search_form = create_search_form()
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
 
     form = FilmForm()
 
@@ -122,7 +129,10 @@ def add_film():
 
 @app.route('/films/<int:id>', methods=['GET', 'POST'])
 def show_film(id):
-    search_form = create_search_form()
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
 
     review_form = ReviewForm()
 
@@ -169,8 +179,6 @@ def get_trailer(id):
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    search_form = create_search_form()
-
     form = ExtendedRegisterForm()
     if request.method == 'POST':
         if not user_datastore.find_user(email=request.form.get('email')):
@@ -183,7 +191,7 @@ def register():
             db_sess.commit()
         return redirect('/')
 
-    return render_template('register.html', form=form, search_form=search_form, bootstrapp=True)
+    return render_template('register.html', form=form, bootstrapp=True)
 
 
 def main():
