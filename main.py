@@ -1,3 +1,4 @@
+import base64
 import datetime
 import random
 
@@ -10,6 +11,7 @@ from data.film import Film
 from data.user import Role, User
 
 from forms.film import FilmForm
+from forms.search import SearchForm
 
 from forms.register import ExtendedRegisterForm, ExtendedLoginForm
 from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
@@ -31,7 +33,14 @@ user_datastore = SQLAlchemySessionUserDatastore(db_sess, User, Role)
 security = Security(app, user_datastore, login_form=ExtendedLoginForm)
 
 
-@app.route("/")
+def create_search_form():
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_input = form.search_info.data
+        return redirect(f"/search/{search_input}")
+
+
+@app.route("/", methods=['GET', 'POST'])
 def index():
     db_sess = db_session.create_session()
     films = db_sess.query(Film)
@@ -43,6 +52,11 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html')
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_input = form.search_info.data
+        return redirect(f"/search/{search_input}")
+    return render_template("index.html", title='W&F', films=films, css_file='styles/main.css', search_form=form)
 
 
 @app.route("/random_film")
@@ -53,15 +67,27 @@ def random_film():
     return redirect(f'/films/{film.id}')
 
 
-@app.route("/search")
-def search():
+@app.route("/search/<string:search_info>")
+def search(search_info):
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
+
     db_sess = db_session.create_session()
-    return render_template("search.html", title='search', css_file='styles/search.css')
+    films = db_sess.query(Film).all()
+    return render_template("search.html", title='search', css_file='styles/search.css', search_form=search_form, films=films, search_info=search_info)
 
 
 @app.route("/add_film", methods=['GET', 'POST'])
 def add_film():
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
+
     form = FilmForm()
+
     if form.validate_on_submit():
         db_sess = db_session.create_session()
 
@@ -69,9 +95,11 @@ def add_film():
         if form.poster:
             film.title = form.title.data
             film.year = form.year.data
-
+            film.rating = form.rating.data
             film.poster = form.poster.data.stream.read()
-
+            film.frame_1 = form.frame_1.data.stream.read()
+            film.frame_2 = form.frame_2.data.stream.read()
+            film.frame_3 = form.frame_3.data.stream.read()
             film.trailer = form.trailer.data.stream.read()
             film.country = form.country.data
             film.genre = form.genre.data
@@ -96,15 +124,19 @@ def add_film():
             db_sess.add(film)
             db_sess.commit()
             return redirect('/')
-    return render_template("add_film.html", title='Добавление фильма', form=form)
+    return render_template("add_film.html", title='Добавление фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
 
 
 @app.route('/films/<int:id>', methods=['GET', 'POST'])
 def show_film(id):
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
+
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
-    #TODO сделать нормальный html
-    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css',
+    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css', search_form=search_form,
                            is_authenticated=current_user.is_authenticated)
 
 
@@ -114,6 +146,21 @@ def get_poster(id):
     film = db_sess.query(Film).filter(Film.id == id).first()
     image = film.poster
     h = make_response(image)
+    h.headers['Content-Type'] = 'image/png'
+    return h
+
+
+@app.route('/films/<int:id>/get_frame/<int:frame>')
+def get_frame(id, frame):
+    db_sess = db_session.create_session()
+    film = db_sess.query(Film).filter(Film.id == id).first()
+    vals = {
+        'frame_1': film.frame_1,
+        'frame_2': film.frame_2,
+        'frame_3': film.frame_3
+    }
+    res_frame = vals[f'frame_{frame}']
+    h = make_response(res_frame)
     h.headers['Content-Type'] = 'image/png'
     return h
 

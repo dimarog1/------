@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -147,78 +148,69 @@ main {
     background-color: rgb(20, 20, 20);
     display: flex;
     justify-content: center;
-    min-height: 930px;
 }
 
 main .content {
-    width: 85%;
-    margin-top: 50px;
+    width: 800px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
 }
 
-main h2 {
-    color: wheat;
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-main .results .result {
-    display: flex;
-    flex-direction: row;
-    background-color: black;
-    padding: 20px;
-    border-radius: 20px;
-    transition: .7s;
-    border: 1px solid rgb(0, 0, 0);
-    margin: 30px 0;
-}
-
-main .results .result .poster {
-    margin-right: 30px;
-}
-
-main .results .result .poster img {
-    height: 200px;
-    border-radius: 10px;
-}
-
-main .results .result .title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-main .results .result .stars {
-    display: flex;
-    justify-content: flex-end;
-    color: gold;
-    font-size: 20px;
-    width: 80%;
-}
-
-main .results .result .stars {
-    white-space: nowrap;
-}
-
-main .results .result .stars i {
-    margin-right: 7px;
-}
-
-main .results .result .title h3 {
-    font-size: 35px;
+main .content .heading h1 {
+    color: burlywood;
+    font-size: 45px;
     margin-bottom: 20px;
-    white-space: nowrap;
 }
 
-main .results .result .description {
-    font-size: 21px;
+main .content .form_for_film form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .content .form_for_film form .string_field {
+    margin: 10px 0 15px;
+}
+
+main .content .form_for_film form .file_field {
+    margin: 10px 0 15px;
+    color: rgb(190, 190, 190);
+}
+
+main .content .form_for_film form .info_for_input {
     color: wheat;
+    font-size: 25px;
+    margin-bottom: 7px;
 }
 
-main .results .result:hover {
-    border: 1px solid wheat;
+main .content .form_for_film form .string_field .input_form input {
+    border-radius: 5px;
+    width: 100%;
+    padding: 7px;
+    font-size: 20px;
+    background-color: rgb(190, 190, 190);
+}
+
+main .content .form_for_film form .file_field input {
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+main .content .form_for_film form .error {
+    font-size: 20px;
+    color: red;
+    margin: 5px;
+}
+
+main .content .form_for_film .submit {
+    padding: 7px;
+    margin-top: 20px;
+    background-color: burlywood;
+    border-radius: 10px;
+    font-size: 25px;
 }
 
 footer {
@@ -243,7 +235,7 @@ footer .container .social {
 }
 
 footer .container .social a i {
-    color: white;
+    color: wheat;
     margin: 20px;
     padding: 10px;
     transition: .5s;
@@ -267,12 +259,12 @@ footer .container .contacts .email {
 }
 
 footer .container .contacts .email a {
-    color: white;
+    color: wheat;
     transition: .6s;
 }
 
 footer .container .contacts .email i {
-    color: white;
+    color: wheat;
     margin-right: 5px;
 }
 
@@ -285,12 +277,12 @@ footer .container .contacts .phone {
 }
 
 footer .container .contacts .phone a {
-    color: white;
+    color: wheat;
     transition: .6s;
 }
 
 footer .container .contacts .phone i {
-    color: white;
+    color: wheat;
     margin-right: 5px;
 }
 
@@ -302,6 +294,7 @@ footer .container .contacts .phone a:hover {
     header .logo {
         display: none;
     }
+
     header .part2 {
         width: 60%;
     }
@@ -311,9 +304,11 @@ footer .container .contacts .phone a:hover {
     header nav .block {
         margin: 20px;
     }
+
     header .part1 {
         width: 70%;
     }
+
     header .part2 {
         width: 30%;
         justify-content: flex-end;
@@ -324,23 +319,46 @@ footer .container .contacts .phone a:hover {
     header nav .block {
         margin: 10px;
     }
+
     header .part1 {
         width: 65%;
     }
+
     header nav .delimiter {
         display: none;
     }
+
     header .part2 {
         width: 35%;
         justify-content: flex-end;
     }
+
     header .part2 form {
         font-size: 15px;
         width: 347px;
         height: 43px;
     }
+
     header .part2 form input {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 1169px) {
+    header .logo {
+        display: none;
+    }
+}
+
+@media (max-width: 994px) {
+    header nav .block {
+        margin: 20px;
+    }
+}
+
+@media (max-width: 955px) {
+    header .logo {
+        display: none;
     }
 }
 
@@ -349,30 +367,23 @@ footer .container .contacts .phone a:hover {
         position: fixed;
         width: 100%;
     }
+
     header .part1 nav {
         font-size: 20px;
     }
-    main .content {
-        margin-top: 60px;
-    }
-    main .results .result {
-        flex-direction: column;
-        align-items: center;
-    }
-    main .results .result .poster {
-        margin-bottom: 20px;
-    }
-    main .results .result .description {
-        text-align: justify;
+
+    header nav .delimiter {
+        display: none;
     }
 }
+
+@media (max-width: 784px) {}
+
+@media (max-width: 702px) {}
 
 @media (max-width: 660px) {
     header .part1 nav {
         font-size: 15px;
-    }
-    main h2 {
-        font-size: 30px;
     }
 }
 
@@ -386,6 +397,7 @@ footer .container .contacts .phone a:hover {
     header nav .block {
         margin: 10px;
     }
+
     footer .container .social a i {
         font-size: 25px;
         padding: 5px;
@@ -396,48 +408,22 @@ footer .container .contacts .phone a:hover {
     header nav .block {
         margin: 7px;
     }
-    main .results .result .title h3 {
-        font-size: 30px;
-    }
-    main .results .result .description {
-        font-size: 20px;
-    }
-    main .results .result .stars {
-        font-size: 15px;
-    }
-    main h2 {
-        font-size: 25px;
-    }
 }
 
 @media (max-width: 409px) {
     header .part1 nav {
         font-size: 13px;
     }
-    main .results .result .title h3 {
-        font-size: 25px;
-    }
-    main h2 {
-        font-size: 22px;
-    }
 }
 
-@media (max-width: 370px) {
+@media (max-width: 365px) {
     header .part1 nav {
         font-size: 11px;
     }
+
     footer .container .social a i {
         padding: 0px;
         margin: 15px;
-    }
-    main .results .result .title h3 {
-        font-size: 20px;
-    }
-    main .results .result .description {
-        font-size: 15px;
-    }
-    main h2 {
-        font-size: 20px;
     }
 }
 
