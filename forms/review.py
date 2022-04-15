@@ -6,5 +6,5 @@ from wtforms.validators import DataRequired
 
 class ReviewForm(FlaskForm):
     text = TextAreaField('Введите текст')
-    mark = RadioField('', choices=[''] * 10)
+    mark = RadioField('', choices=[''] * 10, validators=[DataRequired()])
     submit = SubmitField('Отправить')
