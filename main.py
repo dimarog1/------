@@ -24,7 +24,6 @@ from rest_api import review_resources, film_resources, user_resources
 
 from requests import get, post
 
-
 app = Flask(__name__)
 api = Api(app)
 
@@ -50,7 +49,7 @@ def login_context():
         search_input = form.search_info.data
         return redirect(f"/search/{search_input}")
     return {
-        'search_form': form,
+        'css_file': 'styles/reg.css'
     }
 
 
@@ -239,7 +238,8 @@ def register():
             db_sess.commit()
         return redirect('/')
 
-    return render_template('register.html', form=form, search_form=search_form, bootstrapp=True)
+    return render_template('register.html', form=form, search_form=search_form,
+                           css_file='styles/reg.css')
 
 
 def main():
