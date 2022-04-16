@@ -16,7 +16,7 @@ class RolesUsers(SqlAlchemyBase):
     role_id = Column('role_id', Integer(), ForeignKey('role.id'))
 
 
-class Role(SqlAlchemyBase, RoleMixin):
+class Role(SqlAlchemyBase, RoleMixin, SerializerMixin):
     __tablename__ = 'role'
 
     id = Column(sqlalchemy.Integer(), primary_key=True)
