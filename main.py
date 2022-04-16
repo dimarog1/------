@@ -3,6 +3,8 @@ import datetime
 import random
 
 from flask import Flask, render_template, make_response, request
+from flask_restful import abort
+from flask import Flask, render_template, make_response, request
 from flask_security.utils import hash_password
 from werkzeug.utils import redirect
 
@@ -138,6 +140,98 @@ def add_film():
             db_sess.commit()
             return redirect('/')
     return render_template("add_film.html", title='Добавление фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
+
+
+@app.route("/edit_film/<int:id>", methods=['GET', 'POST'])
+def edit_film(id):
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
+
+    form = FilmForm()
+
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        film = db_sess.query(Film).filter(Film.id == id).first()
+        if film:
+            form.title.data = film.title
+            form.year.data = film.year
+            form.rating.data = film.rating
+            form.poster.data = film.poster
+            form.frame_1.data = film.frame_1
+            form.frame_2.data = film.frame_2
+            form.frame_3.data = film.frame_3
+            form.trailer.data = film.trailer
+            form.country.data = film.country
+            form.genre.data = film.genre
+            form.slogan.data = film.slogan
+            form.director.data = film.director
+            form.scenario.data = film.scenario
+            form.producer.data = film.producer
+            form.operator.data = film.operator
+            form.composer.data = film.composer
+            form.designer.data = film.designer
+            form.montage.data = film.montage
+            form.budget.data = film.budget
+            form.fees_in_the_world.data = film.fees_in_the_world
+            form.audience.data = film.audience
+            form.fees_in_russia.data = film.fees_in_russia
+            form.world_premiere.data = film.world_premiere
+            form.age.data = film.age
+            form.time.data = film.time
+            form.short_description.data = film.short_description
+            form.long_description.data = film.long_description
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        film = db_sess.query(Film).filter(Film.id == id).first()
+        if film:
+            film.title = form.title.data
+            film.year = form.year.data
+            film.rating = form.rating.data
+            film.poster = form.poster.data.stream.read()
+            film.frame_1 = form.frame_1.data.stream.read()
+            film.frame_2 = form.frame_2.data.stream.read()
+            film.frame_3 = form.frame_3.data.stream.read()
+            film.trailer = form.trailer.data.stream.read()
+            film.country = form.country.data
+            film.genre = form.genre.data
+            film.slogan = form.slogan.data
+            film.director = form.director.data
+            film.scenario = form.scenario.data
+            film.producer = form.producer.data
+            film.operator = form.operator.data
+            film.composer = form.composer.data
+            film.designer = form.designer.data
+            film.montage = form.montage.data
+            film.budget = form.budget.data
+            film.fees_in_the_world = form.fees_in_the_world.data
+            film.audience = form.audience.data
+            film.fees_in_russia = form.fees_in_russia.data
+            film.world_premiere = form.world_premiere.data
+            film.age = form.age.data
+            film.time = form.time.data
+            film.short_description = form.short_description.data
+            film.long_description = form.long_description.data
+            db_sess.commit()
+            return redirect('/')
+        else:
+            abort(404)
+    return render_template('add_film.html', title='Изменение фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
+
+
+@app.route("/delete_film/<int:id>", methods=['GET', 'POST'])
+def delete_film(id):
+    db_sess = db_session.create_session()
+    film = db_sess.query(Film).filter(Film.id == id).first()
+    if film:
+        db_sess.delete(film)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/')
 
 
 @app.route('/films/<int:id>', methods=['GET', 'POST'])

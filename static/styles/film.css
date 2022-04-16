@@ -244,6 +244,32 @@ main .content .info .part2 .stats hr {
     opacity: .2;
 }
 
+main .content .admin_buttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 30px;
+}
+
+main .content .admin_buttons .edit {
+    padding: 10px;
+    background-color: burlywood;
+    color: black;
+    display: block;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+main .content .admin_buttons .delete {
+    padding: 10px;
+    background-color: #c73401;
+    color: black;
+    display: block;
+    border-radius: 10px;
+    margin: 10px;
+}
+
 main .content .description {
     margin-top: 20px;
     color: wheat;
@@ -365,7 +391,7 @@ main .content .add_review form .button {
 
 main .content .reviews {
     color: wheat;
-    margin: 50px 0;
+    margin: 70px 0;
 }
 
 main .content .reviews h2 {
@@ -384,7 +410,6 @@ main .content .reviews .review {
     border-radius: 20px;
     width: 50%;
     font-size: 20px;
-    margin: 20px 0;
 }
 
 main .content .reviews .review .head {
@@ -771,45 +796,6 @@ footer .container .contacts .phone a:hover {
     }
 }
 
-@media (max-width: 409px) {
-    header .part1 nav {
-        font-size: 13px;
-    }
-    main .content .info .part2 .title .stars {
-        display: none;
-    }
-    main .content .reviews .review .head .stars {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 365px) {
-    header .part1 nav {
-        font-size: 11px;
-    }
-    footer .container .social a i {
-        padding: 0px;
-        margin: 15px;
-    }
-    main .content .description h2 {
-        font-size: 25px;
-    }
-    main .content .description p {
-        font-size: 15px;
-    }
-    main .content .galery h2 {
-        font-size: 25px;
-    }
-    main .content .reviews h2 {
-        font-size: 25px;
-    }
-}
-
-@media (max-width: 318px) {
-    header .part1 nav {
-        font-size: 9px;
-    }
-}
 @media (max-width: 409px) {
     header .part1 nav {
         font-size: 13px;
