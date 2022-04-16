@@ -141,10 +141,12 @@
             </div>
         </div>
     </div>
-    <div class="admin_buttons">
-        <a href="/edit_film/{{ film.id }}" class="edit">Изменить</a>
-        <a href="/delete_film/{{ film.id }}" class="delete">Удалить</a>
-    </div>
+    {% if is_admin %}
+        <div class="admin_buttons">
+            <a href="/edit_film/{{ film.id }}" class="edit">Изменить</a>
+            <a href="/delete_film/{{ film.id }}" class="delete">Удалить</a>
+        </div>
+    {% endif %}
     <div class="description">
         <h2>Описание</h2>
         <p>{{ film.long_description }}</p>
@@ -190,7 +192,6 @@
                 </div>
             </div>
             <div class="text">
-                <h3>Не ходите, дети, в Вегасы гулять.</h3>
                 <p>
                     {{ element['text'] }}
                 </p>

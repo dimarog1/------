@@ -274,7 +274,8 @@ def show_film(id):
     film = db_sess.query(Film).filter(Film.id == id).first()
     return render_template('film.html', title=film.title, film=film, css_file='styles/film.css',
                            search_form=search_form, review_info=review_info,
-                           review_form=review_form, is_authenticated=current_user.is_authenticated)
+                           review_form=review_form, is_authenticated=current_user.is_authenticated,
+                           is_admin=current_user.has_role('admin'))
 
 
 @app.route('/films/<int:id>/get_poster')
