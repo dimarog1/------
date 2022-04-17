@@ -11,6 +11,7 @@ from werkzeug.utils import redirect
 from data import db_session
 from data.film import Film
 from data.user import Role, User
+from data.review import Review
 
 from forms.film import FilmForm
 from forms.search import SearchForm
@@ -243,15 +244,19 @@ def show_film(id):
 
     review_form = ReviewForm()
     if review_form.is_submitted():
-        data = {
-            'user': current_user.id,
-            'film': id,
-            'text': review_form.text.data,
-            'mark': int(review_form.mark.data),
-        }
+        review = Review()
+        review.user = current_user.id
+        review.film = id
+        review.text = review_form.text.data
+        review.mark = int(review_form.mark.data)
+        db_sess = db_session.create_session()
+        db_sess.add(review)
+        db_sess.commit()
 
-        # TODO
-        post('http://localhost:5000/api/review', data=data)
+        film = db_sess.query(Film).filter(Film.id == review.film).first()
+        film.rating = round(((film.review_count * film.rating) + review.mark) / (film.review_count + 1), 1)
+        film.review_count += 1
+        db_sess.commit()
 
         return redirect(f'/films/{id}')
 
@@ -260,6 +265,7 @@ def show_film(id):
     id_nickname = dict()
     for data_elem in user_data:
         id_nickname[data_elem['id']] = data_elem['nickname']
+
     review_info = []
     for data_elem in review_data:
         if data_elem['film'] == 1:
