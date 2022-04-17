@@ -163,18 +163,40 @@
     </div>
     {% if is_authenticated %}
         <div class="add_review">
-            <h2>Добавить отзыв</h2>
-            <form method="POST" action="">
-                <div class="rating-area">
-                    {% for mark_field in review_form.mark %}
-                        {{ mark_field(value=(11 - loop.index)) }}
-                        {{ mark_field.label }}
-                    {% endfor %}
-                </div>
+            {% if current_user_review %}
+                <h2>Редактировать отзыв</h2>
+                <form method="POST" action="">
+                    <div class="rating-area">
+                        {% for mark_field in review_form.mark %}
+                            {% if (11 - loop.index) == current_user_review["mark"] | int %}
+                                {{ mark_field(value=(11 - loop.index), checked=true) }}
+                                {{ mark_field.label() }}
+                            {% else %}
+                                {{ mark_field(value=(11 - loop.index)) }}
+                                {{ mark_field.label() }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% set a = review_form.text.process_data(current_user_review["text"]) %}
+                    {{ review_form.text(placeholder="Введите текст") }}
+                    {{ review_form.submit(class="button") }}
+                </form>
+            {% endif %}
 
-                {{ review_form.text(placeholder="Введите текст") }}
-                {{ review_form.submit(class="button") }}
-            </form>
+            {% if not current_user_review %}
+                <h2>Добавить отзыв</h2>
+                <form method="POST" action="">
+                    <div class="rating-area">
+                        {% for mark_field in review_form.mark %}
+                            {{ mark_field(value=(11 - loop.index)) }}
+                            {{ mark_field.label }}
+                        {% endfor %}
+                    </div>
+
+                    {{ review_form.text(placeholder="Введите текст") }}
+                    {{ review_form.submit(class="button") }}
+                </form>
+            {% endif %}
         </div>
     {% endif %}
     <div class="reviews">

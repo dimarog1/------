@@ -348,6 +348,7 @@ main .content .add_review form {
 	color: lightgrey;
 	text-shadow: 1px 1px #bbb;
 }
+
 .rating-area:not(:checked) > label:before {
 	content: '★';
 }

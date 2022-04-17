@@ -249,19 +249,32 @@ def show_film(id):
 
     review_form = ReviewForm()
     if review_form.is_submitted():
-        review = Review()
-        review.user = current_user.id
-        review.film = id
-        review.text = review_form.text.data
-        review.mark = int(review_form.mark.data)
         db_sess = db_session.create_session()
-        db_sess.add(review)
-        db_sess.commit()
+        db_sess_1 = db_session.create_session()
 
-        film = db_sess.query(Film).filter(Film.id == review.film).first()
-        film.rating = round(((film.review_count * film.rating) + review.mark) / (film.review_count + 1), 1)
-        film.review_count += 1
+        film = db_sess_1.query(Film).filter(Film.id == id).first()
+        db_review = db_sess.query(Review).filter(Review.user == current_user.id, Review.film == id).first()
+        if db_review:
+            rating = round(((film.review_count * film.rating) - db_review.mark +
+                            int(review_form.mark.data)) / film.review_count, 1)
+            film.rating = rating
+
+            db_review.text = review_form.text.data
+            db_review.mark = int(review_form.mark.data)
+            db_sess.commit()
+        else:
+            film.rating = round(((film.review_count * film.rating) +
+                                 int(review_form.mark.data)) / (film.review_count + 1), 1)
+            film.review_count += 1
+
+            review = Review()
+            review.user = current_user.id
+            review.film = id
+            review.text = review_form.text.data
+            review.mark = int(review_form.mark.data)
+            db_sess.add(review)
         db_sess.commit()
+        db_sess_1.commit()
 
         return redirect(f'/films/{id}')
 
@@ -271,6 +284,7 @@ def show_film(id):
     for data_elem in user_data:
         id_nickname[data_elem['id']] = data_elem['nickname']
 
+    current_user_review = None
     review_info = []
     for data_elem in review_data:
         if data_elem['film'] == 1:
@@ -279,6 +293,8 @@ def show_film(id):
                 'mark': str(data_elem['mark']),
                 'text': data_elem['text'],
             }
+            if current_user.has_role("user") and current_user.id == data_elem['user']:
+                current_user_review = data_block
             review_info.append(data_block)
 
     db_sess = db_session.create_session()
@@ -286,6 +302,7 @@ def show_film(id):
     return render_template('film.html', title=film.title, film=film, css_file='styles/film.css',
                            search_form=search_form, review_info=review_info,
                            review_form=review_form, is_authenticated=current_user.is_authenticated,
+                           current_user_review=current_user_review,
                            is_admin=current_user.has_role('admin'))
 
 
