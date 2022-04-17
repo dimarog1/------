@@ -45,6 +45,11 @@ def create_search_form():
         return redirect(f"/search/{search_input}")
 
 
+@app.teardown_request
+def remove_session(ex=None):
+    db_sess.remove()
+
+
 @app.context_processor
 def login_context():
     form = SearchForm()
