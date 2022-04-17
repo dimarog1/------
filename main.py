@@ -252,6 +252,11 @@ def delete_film(id):
 
 @app.route('/films/<int:id>', methods=['GET', 'POST'])
 def show_film(id):
+    db_sess = db_session.create_session()
+    film = db_sess.query(Film).filter(Film.id == id).first()
+    if not film:
+        abort(404)
+
     search_form = SearchForm()
     if search_form.validate_on_submit():
         search_input = search_form.search_info.data
