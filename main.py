@@ -2,21 +2,41 @@ import base64
 import datetime
 import random
 
+import flask_security.core
 from flask import Flask, render_template, make_response, request
 from flask_restful import abort
+from flask import Flask, render_template, make_response, request
+from flask_security.utils import hash_password
 from werkzeug.utils import redirect
 
 from data import db_session
 from data.film import Film
+from data.user import Role, User
+from data.review import Review
+
 from forms.film import FilmForm
 from forms.search import SearchForm
+from forms.review import ReviewForm
+
+from forms.register import ExtendedRegisterForm, ExtendedLoginForm
+from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
+from flask_security.forms import current_user
+from data.db_session import db_sess, global_init
+
+from flask_restful import Api
+from rest_api import review_resources, film_resources, user_resources
+
+from requests import get, post
 
 app = Flask(__name__)
+api = Api(app)
 
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(
-    days=365
-)
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
+app.config['SECURITY_PASSWORD_SALT'] = 'pbkdf2:sha256:150000'
+
+user_datastore = SQLAlchemySessionUserDatastore(db_sess, User, Role)
+security = Security(app, user_datastore, login_form=ExtendedLoginForm)
 
 
 def create_search_form():
@@ -24,6 +44,22 @@ def create_search_form():
     if form.validate_on_submit():
         search_input = form.search_info.data
         return redirect(f"/search/{search_input}")
+
+
+@app.teardown_request
+def remove_session(ex=None):
+    db_sess.remove()
+
+
+@app.context_processor
+def login_context():
+    form = SearchForm()
+    if form.validate_on_submit():
+        search_input = form.search_info.data
+        return redirect(f"/search/{search_input}")
+    return {
+        'css_file': 'styles/reg.css'
+    }
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -34,7 +70,16 @@ def index():
     if form.validate_on_submit():
         search_input = form.search_info.data
         return redirect(f"/search/{search_input}")
-    return render_template("index.html", title='W&F', films=films, css_file='styles/main.css', search_form=form)
+    return render_template("index.html", title='W&F', films=films,
+                           is_admin=current_user.has_role('admin'),
+                           is_authenticated=current_user.is_authenticated,
+                           css_file='styles/main.css', search_form=form)
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html')
 
 
 @app.route("/random_film")
@@ -54,7 +99,8 @@ def search(search_info):
 
     db_sess = db_session.create_session()
     films = db_sess.query(Film).all()
-    return render_template("search.html", title='search', css_file='styles/search.css', search_form=search_form, films=films, search_info=search_info)
+    return render_template("search.html", title='search', css_file='styles/search.css',
+                           search_form=search_form, films=films, search_info=search_info)
 
 
 @app.route("/add_film", methods=['GET', 'POST'])
@@ -102,7 +148,8 @@ def add_film():
             db_sess.add(film)
             db_sess.commit()
             return redirect('/')
-    return render_template("add_film.html", title='Добавление фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
+    return render_template("add_film.html", title='Добавление фильма',
+                           css_file="styles/add_film.css", form=form, search_form=search_form)
 
 
 @app.route("/edit_film/<int:id>", methods=['GET', 'POST'])
@@ -182,7 +229,8 @@ def edit_film(id):
             return redirect('/')
         else:
             abort(404)
-    return render_template('add_film.html', title='Изменение фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
+    return render_template('add_film.html', title='Изменение фильма',
+                           css_file="styles/add_film.css", form=form, search_form=search_form)
 
 
 @app.route("/delete_film/<int:id>", methods=['GET', 'POST'])
@@ -204,9 +252,64 @@ def show_film(id):
         search_input = search_form.search_info.data
         return redirect(f"/search/{search_input}")
 
+    review_form = ReviewForm()
+    if review_form.is_submitted():
+        db_sess = db_session.create_session()
+        db_sess_1 = db_session.create_session()
+
+        film = db_sess_1.query(Film).filter(Film.id == id).first()
+        db_review = db_sess.query(Review).filter(Review.user == current_user.id, Review.film == id).first()
+        if db_review:
+            rating = round(((film.review_count * film.rating) - db_review.mark +
+                            int(review_form.mark.data)) / film.review_count, 1)
+            film.rating = rating
+
+            db_review.text = review_form.text.data
+            db_review.mark = int(review_form.mark.data)
+            db_sess.commit()
+        else:
+            film.rating = round(((film.review_count * film.rating) +
+                                 int(review_form.mark.data)) / (film.review_count + 1), 1)
+            film.review_count += 1
+
+            review = Review()
+            review.user = current_user.id
+            review.film = id
+            review.text = review_form.text.data
+            review.mark = int(review_form.mark.data)
+            db_sess.add(review)
+        db_sess.commit()
+        db_sess_1.commit()
+
+        return redirect(f'/films/{id}')
+
+    db_sess = db_session.create_session()
+    review_data = db_sess.query(Review).all()
+    user_data = db_sess.query(User).all()
+    id_nickname = dict()
+    for data_elem in user_data:
+        id_nickname[data_elem.id] = data_elem.nickname
+
+    current_user_review = None
+    review_info = []
+    for data_elem in review_data:
+        if data_elem.film == 1:
+            data_block = {
+                'username': id_nickname[data_elem.user],
+                'mark': str(data_elem.mark),
+                'text': data_elem.text,
+            }
+            if current_user.has_role("user") and current_user.id == data_elem.user:
+                current_user_review = data_block
+            review_info.append(data_block)
+
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
-    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css', search_form=search_form)
+    return render_template('film.html', title=film.title, film=film, css_file='styles/film.css',
+                           search_form=search_form, review_info=review_info,
+                           review_form=review_form, is_authenticated=current_user.is_authenticated,
+                           current_user_review=current_user_review,
+                           is_admin=current_user.has_role('admin'))
 
 
 @app.route('/films/<int:id>/get_poster')
@@ -244,8 +347,39 @@ def get_trailer(id):
     return h
 
 
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
+
+    form = ExtendedRegisterForm()
+    if request.method == 'POST':
+        if not user_datastore.find_user(email=request.form.get('email')):
+            user = user_datastore.create_user(
+                email=request.form.get('email'),
+                password=hash_password(request.form.get('password')),
+                nickname=request.form.get('nickname')
+            )
+            default_role = user_datastore.find_role('user')
+            user_datastore.add_role_to_user(user, default_role)
+            db_sess.commit()
+        return redirect('/')
+
+    return render_template('register.html', form=form, search_form=search_form,
+                           css_file='styles/reg.css')
+
+
 def main():
-    db_session.global_init("db/database.db")
+    api.add_resource(review_resources.ReviewListResource, '/api/review')
+    api.add_resource(review_resources.ReviewResource, '/api/review/<int:review_id>')
+    api.add_resource(film_resources.FilmListResource, '/api/films')
+    api.add_resource(film_resources.FilmResource, '/api/films/<int:film_id>')
+    api.add_resource(user_resources.UserListResource, '/api/users')
+    api.add_resource(user_resources.UserResource, '/api/users/<int:user_id>')
+
+    global_init("db/database.db")
     app.run()
 
 

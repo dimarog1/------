@@ -141,10 +141,12 @@
             </div>
         </div>
     </div>
-    <div class="admin_buttons">
-        <a href="/edit_film/{{ film.id }}" class="edit">Изменить</a>
-        <a href="/delete_film/{{ film.id }}" class="delete">Удалить</a>
-    </div>
+    {% if is_admin %}
+        <div class="admin_buttons">
+            <a href="/edit_film/{{ film.id }}" class="edit">Изменить</a>
+            <a href="/delete_film/{{ film.id }}" class="delete">Удалить</a>
+        </div>
+    {% endif %}
     <div class="description">
         <h2>Описание</h2>
         <p>{{ film.long_description }}</p>
@@ -159,66 +161,65 @@
             {% endfor %}
         </div>
     </div>
-    <div class="add_review">
-        <h2>Добавить отзыв</h2>
-        <div class="rating-area">
-            <input type="radio" id="star-5" name="rating" value="5">
-            <label for="star-5" title="Оценка «5»"></label>
-            <input type="radio" id="star-4" name="rating" value="4">
-            <label for="star-4" title="Оценка «4»"></label>
-            <input type="radio" id="star-3" name="rating" value="3">
-            <label for="star-3" title="Оценка «3»"></label>
-            <input type="radio" id="star-2" name="rating" value="2">
-            <label for="star-2" title="Оценка «2»"></label>
-            <input type="radio" id="star-1" name="rating" value="1">
-            <label for="star-1" title="Оценка «1»"></label>
+    {% if is_authenticated %}
+        <div class="add_review">
+            {% if current_user_review %}
+                <h2>Редактировать отзыв</h2>
+                <form method="POST" action="">
+                    <div class="rating-area">
+                        {% for mark_field in review_form.mark %}
+                            {% if (11 - loop.index) == current_user_review["mark"] | int %}
+                                {{ mark_field(value=(11 - loop.index), checked=true) }}
+                                {{ mark_field.label() }}
+                            {% else %}
+                                {{ mark_field(value=(11 - loop.index)) }}
+                                {{ mark_field.label() }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% set a = review_form.text.process_data(current_user_review["text"]) %}
+                    {{ review_form.text(placeholder="Введите текст") }}
+                    {{ review_form.submit(class="button") }}
+                </form>
+            {% endif %}
+
+            {% if not current_user_review %}
+                <h2>Добавить отзыв</h2>
+                <form method="POST" action="">
+                    <div class="rating-area">
+                        {% for mark_field in review_form.mark %}
+                            {{ mark_field(value=(11 - loop.index)) }}
+                            {{ mark_field.label }}
+                        {% endfor %}
+                    </div>
+
+                    {{ review_form.text(placeholder="Введите текст") }}
+                    {{ review_form.submit(class="button") }}
+                </form>
+            {% endif %}
         </div>
-        <form action="">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Введите текст"></textarea>
-            <input type="submit" value="Отправить" class="button">
-        </form>
-    </div>
+    {% endif %}
     <div class="reviews">
         <h2>Отзывы</h2>
+        {% for element in review_info %}
         <div class="review">
             <div class="head">
                 <div class="profile">
                     <img src="avatars/1.jpg" alt="#">
-                    <p>Андрей Александрович</p>
+                    <p>{{ element['username'] }}</p>
                 </div>
                 <div class="stars">
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    4.0
+                    {{ element['mark'] }}
                 </div>
             </div>
             <div class="text">
-                <h3>Не ходите, дети, в Вегасы гулять.</h3>
                 <p>
-                    Как хотелось бы наконец написать положительную, наполненную морем ярких и восторженных
-                    эпитетов рецензию на отечественную комедию но, к сожалению, не получается кривить душой.
-                    Фильм вышел не самый лучший. Впрочем, это даже доказывает определенную стабильность нашего
-                    кинопрома, на гора выдающего типовые, иногда забавные, но бездушные картины.
-                    <br>
-                    Вкратце по сюжету. Молодой врач-рентгенолог Макс обустраивает 'скромные' московские
-                    аппартаменты-студию и оживленно переругивается со своею подругой Лизой. Проблемы у молодой
-                    пары поистине эпические - не могут поделить, кому выносить мусор. Этот страшный вопрос
-                    приводит к разрыву, но, вдруг, о чудо! Лотерейный билет, который Макс и Лиза купили до ссоры
-                    оказывается выигрышным и пара должна получить 150 миллионов рублей. Причем не где-нибудь, а
-                    именно в Лас-Вегасе. В поездку, чтобы за компанию окунуться в чудесный мир капиталистических
-                    пороков, так же отправляются друг Макса Дима и подруга Лизы Олеся.
+                    {{ element['text'] }}
                 </p>
             </div>
-            <div class="comments">
-                <span class="likes">
-                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                    100
-                </span>
-                <span class="dislikes">
-                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                    10
-                </span>
-            </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

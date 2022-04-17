@@ -1,33 +1,32 @@
-<!DOCTYPE html>
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% include "security/_messages.html" %}
+
 <html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if bootstrapp %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    {% endif %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename=css_file) }}"/>
     <title>{{ title }}</title>
 </head>
 
 <body>
-
 <main>
-
     <div class="reg">
-        <h2>Вход</h2>
-        <input type="text" name="" class="login" placeholder="Логин">
-        <input type="password" name="" class="login" placeholder="Пароль">
-        <a href="index.html" class="button">Ок</a>
+    <h1>Вход</h1>
+    <form action="" method="post">
+        {{ login_user_form.csrf_token }}
+        {{ login_user_form.hidden_tag() }}
+        {{ render_field_with_errors(login_user_form.email) }}
+        {{ render_field_with_errors(login_user_form.password) }}
+        <p>{{ login_user_form.submit(type="submit", class="btn btn-primary") }}</p>
+    </form>
     </div>
-
 </main>
-
 <script src="https://kit.fontawesome.com/109d4b9770.js" crossorigin="anonymous"></script>
-
 </body>
-
 </html>
+

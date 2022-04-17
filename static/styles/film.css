@@ -333,7 +333,7 @@ main .content .add_review form {
 
 .rating-area {
 	overflow: hidden;
-	width: 150px;
+	width: 300px;
 }
 .rating-area:not(:checked) > input {
 	display: none;
@@ -348,6 +348,7 @@ main .content .add_review form {
 	color: lightgrey;
 	text-shadow: 1px 1px #bbb;
 }
+
 .rating-area:not(:checked) > label:before {
 	content: '★';
 }
@@ -391,7 +392,7 @@ main .content .add_review form .button {
 
 main .content .reviews {
     color: wheat;
-    margin: 50px 0;
+    margin: 70px 0;
 }
 
 main .content .reviews h2 {

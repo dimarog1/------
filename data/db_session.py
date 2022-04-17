@@ -2,8 +2,18 @@ import sqlalchemy as sa
 import sqlalchemy.orm as orm
 from sqlalchemy.orm import Session
 import sqlalchemy.ext.declarative as dec
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 
+
+engine = create_engine('sqlite:///db/database.db',
+                       convert_unicode=True)
+db_sess = scoped_session(sessionmaker(autocommit=False,
+                                         autoflush=False,
+                                         bind=engine))
 SqlAlchemyBase = dec.declarative_base()
+SqlAlchemyBase.query = db_sess.query_property()
 
 __factory = None
 

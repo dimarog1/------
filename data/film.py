@@ -10,7 +10,7 @@ class Film(SqlAlchemyBase, SerializerMixin):
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
     title = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    rating = sqlalchemy.Column(sqlalchemy.Float, nullable=False)
+    rating = sqlalchemy.Column(sqlalchemy.Float, nullable=False, default=0)
     poster = sqlalchemy.Column(sqlalchemy.BLOB, nullable=False)
     frame_1 = sqlalchemy.Column(sqlalchemy.BLOB, nullable=False)
     frame_2 = sqlalchemy.Column(sqlalchemy.BLOB, nullable=False)
@@ -36,3 +36,4 @@ class Film(SqlAlchemyBase, SerializerMixin):
     time = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     short_description = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     long_description = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    review_count = sqlalchemy.Column(sqlalchemy.Integer, nullable=False, default=0)
