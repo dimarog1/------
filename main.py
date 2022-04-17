@@ -20,7 +20,7 @@ from forms.review import ReviewForm
 
 from forms.register import ExtendedRegisterForm, ExtendedLoginForm
 from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
-from flask_security.forms import current_user
+from flask_security.forms import current_user, ConfirmRegisterForm
 from data.db_session import db_sess, global_init
 
 from flask_restful import Api
@@ -367,6 +367,9 @@ def register():
 
     form = ExtendedRegisterForm()
     if request.method == 'POST':
+        if request.form.get('password') != request.form.get('password_confirm'):
+            return render_template('register.html', form=form, search_form=search_form,
+                                   message='Пароли не совпадают', css_file='styles/reg.css')
         if not user_datastore.find_user(email=request.form.get('email')):
             user = user_datastore.create_user(
                 email=request.form.get('email'),

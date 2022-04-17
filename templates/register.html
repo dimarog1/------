@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% include "security/_messages.html" %}
+
 <html lang="ru">
 
 <head>
@@ -15,50 +17,17 @@
 <main>
     <div class="reg">
     <h1>Регистрация</h1>
-        <form action="" method="post">
+        <form method="post">
             {{ form.csrf_token }}
             {{ form.hidden_tag() }}
-            <p>
-                {{ form.email.label }}<br>
-                {{ form.email(class="form-control", type="email") }}<br>
-                {% for error in form.email.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                {% endfor %}
-            </p>
-                <p>
-                {{ form.nickname.label }}<br>
-                {{ form.nickname(class="form-control", type="name") }}<br>
-                {% for error in form.nickname.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.password.label }}<br>
-                {{ form.password(class="form-control", type="password") }}<br>
-                {% for error in form.password.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                {% endfor %}
-            </p>
-                <p>
-                {{ form.password_confirm.label }}<br>
-                {{ form.password_confirm(class="form-control", type="password") }}<br>
-                {% for error in form.password_confirm.errors %}
-                    <p class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </p>
-                {% endfor %}
-            </p>
-            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-            {{message}}
-            {% if form.errors %}
-            {{ form.errors }}
+            {{ render_field_with_errors(form.email) }}
+            {{ render_field_with_errors(form.nickname) }}
+            {{ render_field_with_errors(form.password) }}
+            {% if form.password_confirm %}
+                {{ render_field_with_errors(form.password_confirm) }}
             {% endif %}
+            {{ render_field(form.submit) }}
+            {{message}}
         </form>
     </div>
 </main>
