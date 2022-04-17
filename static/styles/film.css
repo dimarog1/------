@@ -410,6 +410,7 @@ main .content .reviews .review {
     border-radius: 20px;
     width: 50%;
     font-size: 20px;
+    margin: 20px 0;
 }
 
 main .content .reviews .review .head {
