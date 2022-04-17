@@ -11,6 +11,7 @@ from werkzeug.utils import redirect
 from data import db_session
 from data.film import Film
 from data.user import Role, User
+from data.review import Review
 
 from forms.film import FilmForm
 from forms.search import SearchForm
@@ -264,9 +265,12 @@ def show_film(id):
     for data_elem in review_data:
         if data_elem['film'] == 1:
             data_block = {
+                'id': data_elem['id'],
                 'username': id_nickname[data_elem['user']],
                 'mark': str(data_elem['mark']),
                 'text': data_elem['text'],
+                'like_count': str(data_elem['like_count']),
+                'dislike_count': str(data_elem['dislike_count'])
             }
             review_info.append(data_block)
 
@@ -335,6 +339,28 @@ def register():
 
     return render_template('register.html', form=form, search_form=search_form,
                            css_file='styles/reg.css')
+
+
+@app.route("/like_comment/<int:film_id>/<int:id>", methods=['GET', 'POST'])
+def like_comment(film_id, id):
+    review = db_sess.query(Review).filter(Review.id == id).first()
+    if review:
+        review.like_count += 1
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect(f'/films/{film_id}')
+
+
+@app.route("/dislike_comment/<int:film_id>/<int:id>", methods=['GET', 'POST'])
+def dislike_comment(film_id, id):
+    review = db_sess.query(Review).filter(Review.id == id).first()
+    if review:
+        review.dislike_count += 1
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect(f'/films/{film_id}')
 
 
 def main():

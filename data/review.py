@@ -12,5 +12,7 @@ class Review(SqlAlchemyBase, SerializerMixin):
     film = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('films.id'))
     text = sqlalchemy.Column(sqlalchemy.String)
     mark = sqlalchemy.Column(sqlalchemy.Integer)
+    like_count = sqlalchemy.Column(sqlalchemy.Integer, default=0)
+    dislike_count = sqlalchemy.Column(sqlalchemy.Integer, default=0)
     orm.relation('user')
     orm.relation('films')

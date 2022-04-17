@@ -197,13 +197,13 @@
                 </p>
             </div>
             <div class="comments">
-                <span class="likes">
+                <span class="likes" onclick="window.location='/like_comment/{{ film.id }}/{{ element['id'] }}'">
                     <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                    100
+                    {{ element['like_count'] }}
                 </span>
-                <span class="dislikes">
+                <span class="dislikes" onclick="window.location='/dislike_comment/{{ film.id }}/{{ element['id'] }}'">
                     <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                    10
+                    {{ element['dislike_count'] }}
                 </span>
             </div>
         </div>
