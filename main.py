@@ -242,6 +242,11 @@ def delete_film(id):
         db_sess.commit()
     else:
         abort(404)
+
+    reviews = db_sess.query(Review).filter(Review.film == id).all()
+    for review in reviews:
+        db_sess.delete(review)
+    db_sess.commit()
     return redirect('/')
 
 
@@ -260,6 +265,7 @@ def show_film(id):
         film = db_sess_1.query(Film).filter(Film.id == id).first()
         db_review = db_sess.query(Review).filter(Review.user == current_user.id, Review.film == id).first()
         if db_review:
+
             rating = round(((film.review_count * film.rating) - db_review.mark +
                             int(review_form.mark.data)) / film.review_count, 1)
             film.rating = rating
