@@ -19,7 +19,7 @@ from forms.film import FilmForm
 from forms.search import SearchForm
 from forms.review import ReviewForm
 
-from forms.register import ExtendedRegisterForm, ExtendedLoginForm
+from forms.register import ExtendedRegisterForm, ExtendedLoginForm, EditUser
 from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
 from flask_security.forms import current_user, ConfirmRegisterForm
 from data.db_session import db_sess, global_init
@@ -82,10 +82,30 @@ def index():
                            css_file='styles/main.css', search_form=form)
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    return render_template('profile.html')
+    search_form = SearchForm()
+    form = EditUser()
+    if request.method == 'POST':
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.nickname == current_user.nickname,
+                                          User.email == current_user.email).first()
+        if user:
+            if form.nickname.data != '':
+                user.nickname = form.nickname.data
+            if form.email.data != '':
+                user.email = form.email.data
+            if form.password.data != '':
+                user.password = hash_password(form.password.data)
+            db_sess.commit()
+            return redirect('/')
+    if search_form.validate_on_submit():
+        search_input = search_form.search_info.data
+        return redirect(f"/search/{search_input}")
+    return render_template('profile.html', search_form=search_form, css_file='styles/profile.css',
+                           username=current_user.nickname, email=current_user.email,
+                           form=form)
 
 
 @app.route("/random_film")

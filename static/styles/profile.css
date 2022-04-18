@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+
+h1 {
+    color: burlywood;
+    margin-left: auto 0;
+    margin-right: auto 0;
+    margin-bottom: auto 0;
+    margin-down: auto 0;
+}
+
+
+header .container {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .container .logo {
+    width: 15%;
+}
+
+header .logo a {
+    color: wheat;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'KoHo';
+}
+
+header .part1 {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+header .container nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
+}
+
+header nav .block {
+    margin: 30px;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header nav .block a {
+    color: burlywood;
+    margin-bottom: 5px;
+}
+
+header nav .delimiter {
+    display: block;
+    width: 1px;
+    height: 30px;
+    margin: auto 0;
+    background-color: black;
+    transition: 1s;
+}
+
+header:hover nav .delimiter {
+    background-color: wheat;
+}
+
+header nav .block .line {
+    background-color: black;
+    width: 0%;
+    height: 1px;
+    transition: 0.7s;
+}
+
+header nav .block {
+    cursor: pointer;
+}
+
+header nav .block:hover .line {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+
+header .part2 {
+    width: 35%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+}
+
+header form {
+    background-color: rgb(190, 190, 190);
+    opacity: .8;
+    border-radius: 15px;
+    padding: 1px 10px;
+    transition: 0.7s;
+}
+
+header form input {
+    height: 30px;
+    padding: 10px;
+    border: none;
+    background-color: rgb(190, 190, 190);
+    font-size: 20px;
+    font-weight: 600px;
+}
+
+header form:hover {
+    box-shadow: 0 0 10px 3px burlywood;
+}
+
+header form input:focus {
+    outline: none;
+}
+
+header form i {
+    color: rgb(0, 0, 0);
+    background-color: rgb(190, 190, 190);
+    padding: 10px;
+}
+
+header .part2 .user i {
+    color: white;
+    font-size: 35px;
+    margin: 0 20px 0 70px;
+    transition: .6s;
+}
+
+header .part2 .user i:hover {
+    color: wheat;
+}
+
+main {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    justify-content: center;
+}
+
+main .reg h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+main .content {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+main .content .heading h1 {
+    color: white;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+main .content .form_for_film form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .content .form_for_film form .string_field {
+    margin: 10px 0 15px;
+}
+
+main .content .form_for_film form .file_field {
+    margin: 10px 0 15px;
+    color: rgb(190, 190, 190);
+}
+
+main .content .form_for_film form .info_for_input {
+    color: wheat;
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+main .content .form_for_film form .string_field .input_form input {
+    border-radius: 5px;
+    width: 100%;
+    padding: 7px;
+    font-size: 20px;
+    background-color: rgb(190, 190, 190);
+}
+
+main .content .form_for_film form .file_field input {
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+main .content .form_for_film form .error {
+    font-size: 20px;
+    color: red;
+    margin: 5px;
+}
+
+main .content .form_for_film .submit {
+    padding: 7px;
+    margin-top: 20px;
+    background-color: burlywood;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+footer {
+    background-color: black;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+footer .container {
+    width: 800px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer .container .social {
+    display: flex;
+    flex-direction: row;
+}
+
+footer .container .social a i {
+    color: wheat;
+    margin: 20px;
+    padding: 10px;
+    transition: .5s;
+    font-size: 30px;
+}
+
+footer .container .social a i:hover {
+    opacity: .5;
+}
+
+footer .container .contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+footer .container .contacts .email {
+    margin: 15px;
+}
+
+footer .container .contacts .email a {
+    color: wheat;
+    transition: .6s;
+}
+
+footer .container .contacts .email i {
+    color: wheat;
+    margin-right: 5px;
+}
+
+footer .container .contacts .email a:hover {
+    opacity: .7;
+}
+
+footer .container .contacts .phone {
+    margin: 15px;
+}
+
+footer .container .contacts .phone a {
+    color: wheat;
+    transition: .6s;
+}
+
+footer .container .contacts .phone i {
+    color: wheat;
+    margin-right: 5px;
+}
+
+footer .container .contacts .phone a:hover {
+    opacity: .7;
+}
+
+@media (max-width: 1490px) {
+    header .logo {
+        display: none;
+    }
+
+    header .part2 {
+        width: 60%;
+    }
+}
+
+@media (max-width: 1250px) {
+    header nav .block {
+        margin: 20px;
+    }
+
+    header .part1 {
+        width: 70%;
+    }
+
+    header .part2 {
+        width: 30%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 1150px) {
+    header nav .block {
+        margin: 10px;
+    }
+
+    header .part1 {
+        width: 65%;
+    }
+
+    header nav .delimiter {
+        display: none;
+    }
+
+    header .part2 {
+        width: 35%;
+        justify-content: flex-end;
+    }
+
+    header .part2 form {
+        font-size: 15px;
+        width: 347px;
+        height: 43px;
+    }
+
+    header .part2 form input {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1169px) {
+    header .logo {
+        display: none;
+    }
+}
+
+@media (max-width: 994px) {
+    header nav .block {
+        margin: 20px;
+    }
+}
+
+@media (max-width: 955px) {
+    header .logo {
+        display: none;
+    }
+}
+
+@media (max-width: 884px) {
+    header {
+        position: fixed;
+        width: 100%;
+    }
+
+    header .part1 nav {
+        font-size: 20px;
+    }
+
+    header nav .delimiter {
+        display: none;
+    }
+}
+
+@media (max-width: 784px) {}
+
+@media (max-width: 702px) {}
+
+@media (max-width: 660px) {
+    header .part1 nav {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 546px) {
+    header nav .block {
+        margin: 15px;
+    }
+}
+
+@media (max-width: 492px) {
+    header nav .block {
+        margin: 10px;
+    }
+
+    footer .container .social a i {
+        font-size: 25px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 450px) {
+    header nav .block {
+        margin: 7px;
+    }
+}
+
+@media (max-width: 409px) {
+    header .part1 nav {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 365px) {
+    header .part1 nav {
+        font-size: 11px;
+    }
+
+    footer .container .social a i {
+        padding: 0px;
+        margin: 15px;
+    }
+}
+
+@media (max-width: 318px) {
+    header .part1 nav {
+        font-size: 9px;
+    }
+}
