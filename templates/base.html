@@ -28,25 +28,43 @@
                     <a href="/">Главная</a>
                     <span class="line"></span>
                 </div>
+
                 <span class="delimiter"></span>
                 <div class="block">
                     <a href="/random_film">Случайный фильм</a>
                     <span class="line"></span>
                 </div>
-                <span class="delimiter"></span>
-                <div class="block">
-                    <a href="/reg">Профиль</a>
-                    <span class="line"></span>
-                </div>
+
                 <span class="delimiter"></span>
                 <div class="block">
                     <a href="#contact">Контакты</a>
                     <span class="line"></span>
                 </div>
-                <span class="delimiter"></span>
+
                 {% if is_admin %}
+                <span class="delimiter"></span>
                 <div class="block">
                     <a href="/add_film">Добавить фильм</a>
+                    <span class="line"></span>
+                </div>
+                {% endif %}
+
+
+                {% if is_authenticated %}
+                <div class="block">
+                    <a href="/logout">Выйти</a>
+                    <span class="line"></span>
+                </div>
+                {% endif %}
+
+                {% if not is_authenticated %}
+                <div class="block">
+                    <a href="/login">Войти</a>
+                    <span class="line"></span>
+                </div>
+                <span class="delimiter"></span>
+                <div class="block">
+                    <a href="/register">Зарегистрироваться</a>
                     <span class="line"></span>
                 </div>
                 {% endif %}

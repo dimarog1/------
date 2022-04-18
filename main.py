@@ -2,6 +2,7 @@ import base64
 import datetime
 import random
 
+import flask_security.core
 from flask import Flask, render_template, make_response, request
 from flask_restful import abort
 from flask import Flask, render_template, make_response, request
@@ -69,7 +70,9 @@ def index():
     if form.validate_on_submit():
         search_input = form.search_info.data
         return redirect(f"/search/{search_input}")
-    return render_template("index.html", title='W&F', films=films, is_admin=current_user.has_role('admin'),
+    return render_template("index.html", title='W&F', films=films,
+                           is_admin=current_user.has_role('admin'),
+                           is_authenticated=current_user.is_authenticated,
                            css_file='styles/main.css', search_form=form)
 
 
@@ -165,7 +168,8 @@ def add_film():
             db_sess.add(film)
             db_sess.commit()
             return redirect('/')
-    return render_template("add_film.html", title='Добавление фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
+    return render_template("add_film.html", title='Добавление фильма',
+                           css_file="styles/add_film.css", form=form, search_form=search_form)
 
 
 @app.route("/edit_film/<int:id>", methods=['GET', 'POST'])
@@ -245,7 +249,8 @@ def edit_film(id):
             return redirect('/')
         else:
             abort(404)
-    return render_template('add_film.html', title='Изменение фильма', css_file="styles/add_film.css", form=form, search_form=search_form)
+    return render_template('add_film.html', title='Изменение фильма',
+                           css_file="styles/add_film.css", form=form, search_form=search_form)
 
 
 @app.route("/delete_film/<int:id>", methods=['GET', 'POST'])
