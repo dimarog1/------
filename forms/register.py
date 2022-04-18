@@ -18,3 +18,9 @@ class ExtendedLoginForm(LoginForm):
     def validate(self):
         response = super(ExtendedLoginForm, self).validate()
         return response
+
+
+class EditUser(LoginForm):
+    email = StringField('Почта')
+    nickname = StringField('Имя пользователя')
+    password = PasswordField('Пароль')

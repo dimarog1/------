@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Профиль пользователя</h1>
+<div class="content">
+        <form action="" method="post">
+        <h1>nickname: {{username}}</h1>
+        {{form.nickname(class="form-control", type="name")}}
+        <button type="submit" class="btn btn-primary">Изменить</button>
+        <h1>email: {{email}}</h1>
+        {{form.email(class="form-control", type="email")}}
+        <button type="submit" class="btn btn-primary">Изменить</button>
+        <h1>password:</h1>
+        {{form.password(class="form-control", type="password")}}
+        <button type="submit" class="btn btn-primary">Изменить</button>
+        </form>
+</div>
 {% endblock %}
