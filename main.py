@@ -91,7 +91,7 @@ def profile():
             if form.email.data != '':
                 user.email = form.email.data
             if form.password.data != '':
-                user.password = form.password.data
+                user.password = hash_password(form.password.data)
             db_sess.commit()
             return redirect('/')
     if search_form.validate_on_submit():
