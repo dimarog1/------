@@ -27,13 +27,14 @@ from dotenv import load_dotenv
 
 from flask_restful import Api
 from rest_api import review_resources, film_resources, user_resources
-
+import logging
 from requests import get, post
 
 app = Flask(__name__)
 api = Api(app)
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
+logging.basicConfig(filename='logger.txt')
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
@@ -69,6 +70,7 @@ def login_context():
 @app.route("/", methods=['GET', 'POST'])
 def index():
     db_sess = db_session.create_session()
+    logging.warning(db_sess)
     films = db_sess.query(Film)
     form = SearchForm()
     if form.validate_on_submit():
