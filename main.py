@@ -1,5 +1,6 @@
 import base64
 import datetime
+import os
 import random
 
 import flask_security.core
@@ -22,6 +23,7 @@ from forms.register import ExtendedRegisterForm, ExtendedLoginForm
 from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
 from flask_security.forms import current_user, ConfirmRegisterForm
 from data.db_session import db_sess, global_init
+from dotenv import load_dotenv
 
 from flask_restful import Api
 from rest_api import review_resources, film_resources, user_resources
@@ -30,10 +32,12 @@ from requests import get, post
 
 app = Flask(__name__)
 api = Api(app)
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
-app.config['SECURITY_PASSWORD_SALT'] = 'pbkdf2:sha256:150000'
+app.config['SECURITY_PASSWORD_SALT'] = os.environ.get('SECURITY_PASSWORD_SALT')
 
 user_datastore = SQLAlchemySessionUserDatastore(db_sess, User, Role)
 security = Security(app, user_datastore, login_form=ExtendedLoginForm)
