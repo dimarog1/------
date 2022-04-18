@@ -54,6 +54,11 @@
                 <div class="input_form">
                     {{ form.poster() }}
                 </div>
+                {% if film_id %}
+                    <div class="poster">
+                        <img src="{{ url_for('get_poster', id=film_id) }}" alt="Картинки нет">
+                    </div>
+                {% endif %}
                 {% for error in form.poster.errors %}
                     <p class="error">
                         {{ error }}
@@ -67,6 +72,11 @@
                 <div class="input_form">
                     {{ form.frame_1() }}
                 </div>
+                {% if film_id %}
+                    <div class="frame">
+                        <img src="{{ url_for('get_frame', id=film_id, frame=1) }}" alt="Картинки нет">
+                    </div>
+                {% endif %}
                 {% for error in form.frame_1.errors %}
                     <p class="error">
                         {{ error }}
@@ -80,6 +90,11 @@
                 <div class="input_form">
                     {{ form.frame_2() }}
                 </div>
+                {% if film_id %}
+                    <div class="frame">
+                        <img src="{{ url_for('get_frame', id=film_id, frame=2) }}" alt="Картинки нет">
+                    </div>
+                {% endif %}
                 {% for error in form.frame_2.errors %}
                     <p class="error">
                         {{ error }}
@@ -93,6 +108,11 @@
                 <div class="input_form">
                     {{ form.frame_3() }}
                 </div>
+                {% if film_id %}
+                    <div class="frame">
+                        <img src="{{ url_for('get_frame', id=film_id, frame=3) }}" alt="Картинки нет">
+                    </div>
+                {% endif %}
                 {% for error in form.frame_3.errors %}
                     <p class="error">
                         {{ error }}
@@ -106,6 +126,9 @@
                 <div class="input_form">
                     {{ form.trailer() }}
                 </div>
+                {% if film_id %}
+                    <video controls src="{{ url_for('get_trailer', id=film_id) }}"></video>
+                {% endif %}
                 {% for error in form.trailer.errors %}
                     <p class="error">
                         {{ error }}

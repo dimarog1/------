@@ -354,6 +354,10 @@ footer .container .contacts .phone a:hover {
     main .content .part_of_recomendations .films .film:hover {
         height: 400px;
     }
+    main .part_of_recomendations .films .film .image img {
+        height: 300px;
+        width: 198px;
+    }
 }
 @media (max-width: 1250px) {
     header nav .block {
@@ -400,6 +404,10 @@ footer .container .contacts .phone a:hover {
     main .content .part_of_recomendations .films .film {
         width: 170px;
         height: 270px;
+    }
+    main .part_of_recomendations .films .film .image img {
+        height: 270px;
+        width: 168px;
     }
     main .content .part_of_recomendations .films .film:hover {
         height: 370px;

@@ -256,7 +256,7 @@ def edit_film(id):
         else:
             abort(404)
     return render_template('add_film.html', title='Изменение фильма',
-                           css_file="styles/add_film.css", form=form, search_form=search_form)
+                           css_file="styles/add_film.css", form=form, search_form=search_form, film_id=id)
 
 
 @app.route("/delete_film/<int:id>", methods=['GET', 'POST'])

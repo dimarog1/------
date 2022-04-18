@@ -180,6 +180,27 @@ main .content .form_for_film form .file_field {
     color: rgb(190, 190, 190);
 }
 
+main .content .form_for_film form .file_field .poster img {
+    margin-top: 20px;
+    width: 135px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+main .content .form_for_film form .file_field .frame img {
+    margin-top: 20px;
+    width: 160px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+main .content .form_for_film form .file_field video {
+    margin-top: 20px;
+    width: 500px;
+    height: 209px;
+    border-radius: 10px;
+}
+
 main .content .form_for_film form .info_for_input {
     color: wheat;
     font-size: 25px;
