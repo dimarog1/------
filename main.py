@@ -116,7 +116,7 @@ def random_film():
     return redirect(f'/films/{film.id}')
 
 
-@app.route("/search/<string:search_info>")
+@app.route("/search/<string:search_info>", methods=['GET', 'POST'])
 def search(search_info):
     search_form = SearchForm()
     if search_form.validate_on_submit():
