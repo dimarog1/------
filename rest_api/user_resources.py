@@ -24,11 +24,12 @@ class UserResource(Resource):
         abort_if_user_not_found(user_id)
         session = db_session.create_session()
         user = session.query(User).get(user_id)
-        return jsonify({'user': user.to_dict()})
+        return jsonify({'user': user.to_dict(only=('id', 'nickname'))})
 
 
 class UserListResource(Resource):
     def get(self):
         session = db_session.create_session()
         user = session.query(User).all()
-        return jsonify({'user': [item.to_dict() for item in user]})
+        return jsonify({'user': [item.to_dict(only=('id', 'nickname'))
+                                 for item in user]})
