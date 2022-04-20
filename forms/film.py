@@ -33,5 +33,4 @@ class FilmForm(FlaskForm):
     short_description = StringField('Краткое описание', validators=[DataRequired()])
     long_description = StringField('Развёрнутое описание', validators=[DataRequired()])
 
-
-    submit = SubmitField('Submit')
+    submit = SubmitField('Добавить')

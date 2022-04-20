@@ -81,15 +81,37 @@ class FilmListResource(Resource):
     def get(self):
         session = db_session.create_session()
         film = session.query(Film).all()
-        return jsonify({'film': [item.to_dict() for item in film]})
+        return jsonify({'film': [item.to_dict(
+            only=(
+                'title',
+                'year',
+                'country',
+                'genre',
+                'slogan',
+                'director',
+                'scenario',
+                'producer',
+                'operator',
+                'composer',
+                'designer',
+                'montage',
+                'budget',
+                'fees_in_the_world',
+                'audience',
+                'fees_in_russia',
+                'world_premiere',
+                'age',
+                'time',
+                'short_description',
+                'long_description',
+            )
+        ) for item in film]})
 
     def post(self):
         args = parser.parse_args()
         session = db_session.create_session()
         film = Film(
             title=args['title'],
-            poster=args['poster'],
-            trailer=args['trailer'],
             year=args['year'],
             country=args['country'],
             genre=args['genre'],
