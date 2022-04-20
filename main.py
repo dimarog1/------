@@ -22,6 +22,7 @@ from forms.review import ReviewForm
 from forms.register import ExtendedRegisterForm, ExtendedLoginForm, EditUser
 from flask_security import SQLAlchemySessionUserDatastore, Security, login_required, user_registered
 from flask_security.forms import current_user, ConfirmRegisterForm
+from flask_security.decorators import roles_accepted
 from data.db_session import db_sess, global_init
 from dotenv import load_dotenv
 
@@ -180,6 +181,8 @@ def add_film():
 
 @app.route("/edit_film/<int:id>", methods=['GET', 'POST'])
 def edit_film(id):
+    if not current_user.has_role('admin'):
+        abort(403)
     search_form = SearchForm()
     if search_form.validate_on_submit():
         search_input = search_form.search_info.data
@@ -261,6 +264,8 @@ def edit_film(id):
 
 @app.route("/delete_film/<int:id>", methods=['GET', 'POST'])
 def delete_film(id):
+    if not current_user.has_role('admin'):
+        abort(403)
     db_sess = db_session.create_session()
     film = db_sess.query(Film).filter(Film.id == id).first()
     if film:
